@@ -1,0 +1,198 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper,left=2cm,right=2cm,top=2.5cm,bottom=2cm]{geometry}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{babel}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{color}
+\usepackage{dsfont}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{pifont}
+
+\theoremstyle{plain}% default
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{lem}[thm]{Lemme}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollaire}
+\theoremstyle{definition}
+\newtheorem{dfnt}{Définition}[section]
+\newtheorem{exmp}{Exemple}[section]
+\newtheorem{xca}[exmp]{Exercice}
+\theoremstyle{remark}
+\newtheorem*{rmq}{Remarque}
+\newtheorem*{note}{Note}
+\newtheorem{case}{Case}
+
+\crefname{thm}{théorème}{théorèmes}
+\crefname{lem}{lemme}{lemmes}
+\crefname{prop}{proposition}{propositions}
+\crefname{cor}{corollaire}{corollaires}
+\crefname{dfnt}{définition}{définitions}
+\crefname{exmp}{exemple}{exemples}
+\crefname{xca}{exercice}{exercices}
+\crefname{rmq}{remarque}{remarques}
+\crefname{note}{note}{notes}
+\crefname{case}{case}{cases}
+
+\newcommand{\ncref}[1]{\cref{#1} "\nameref{#1}"}
+\newcommand{\Ncref}[1]{\Cref{#1} \Nameref{#1}}
+
+\begin{document}
+Algorithme de Perron-Frobeinus
+
+\section{Introduction: cas de $\mathbb{R}^{2}$}
+
+Soit $x \in ]0;1[$ et $e_1$ $e_2$ une base de $R^2$
+On note $D$ la demi-droite passant par $(0;0)$ et $X=(x;1)$
+Comment trouver un cône plus petit contenant $D$?
+
+On note $X=xe_1+e_2=x(e_1+\frac{1}{x}e_2)=x(e_1+[\frac{1}{x}]e_2+{\frac{1}{x}}e_2)$
+On pose donc $e_3=e_1+[\frac{1}{x}]e_2$ et nous avons $X=x(Txe_2+e_3)$ avec $Tx={\frac{1}{x}}$
+
+Nous avons donc une suite de base $(e_n;e_{n+1})$ avec pour matrice de changement de base $P_n=
+\begin{pmatrix}
+   0 & 1 \\
+   2 & [\frac{1}{T^{n-1}x}]
+\end{pmatrix}$
+En écrivant $e_{n+2}=(p_n;q_n)\in \mathbb{Z}^2$ nous avons:
+$P_1...P_n=
+\begin{pmatrix}
+  p_{n-1} & p_n \\
+  q_{n-1} & q_n
+\end{pmatrix}$
+
+Finalement nous avons $x=\frac{p_{n-1}T^n {x}+p_n}{q_{n-1}T^n x+q_{n-1}}$
+\section{Quelques définitons}
+
+$\tilde{w_i^n}=(\frac{c_{i,n}^n}{c^n_{i,d+1}},...,\frac{c^n_{i,d}}{c^n_{i,d+1}})$
+Prenons $\theta \in \mathbb{R}^d$ et une approximation $\tilde{w}=(\frac{p_1}{q},...,\frac{p_d}{q})$
+\begin{dfnt}
+  Nous définissons l'exposent de Roth $\eta (w)=\eta(w,\theta)$ qui est:
+  $\eta(w,\theta)=-\frac{log\| \theta - \tilde{w} \|}{log(q(w))}$
+\end{dfnt}
+\begin{dfnt}
+  L'exponent de la meilleur approximitation est:
+  $\eta(\theta)=limsup_{q(w) \to \infty} \eta(w,\theta)$
+\end{dfnt}
+Nous avons de même l'approximation uniforme qui concerne des matrices $W \in Gl(d+1,\mathbb{Z}), W=\begin{pmatrix}
+w_1\\
+. \\
+. \\
+. \\
+w_{d+1}
+\end{pmatrix}$
+
+\begin{dfnt}
+  L'exposent uniforme de $W$ pour $\theta$ est:
+  $\eta^*(W,\theta)=\underset{1 \leq i \leq d+1}{min}(-\frac{log \| \theta - \tilde{w_i}}{log q(W)} \|)$
+\end{dfnt}
+
+\begin{dfnt}
+  La meilleur approximation de matrice avec un denominateur inferieur à $Q$ est:
+  $\eta^{*}(\theta,Q)=\underset{q(W) \leq Q}{inf} (\eta^{*}(W,\theta)\frac{log q(W)}{log Q})$
+\end{dfnt}
+
+\begin{dfnt}
+  L'exposent de l'approximation uniforme pour $\theta$ est:
+  $\eta^*(\theta)=\underset{Q \to \infty}{lim inf} \eta^*(\theta,Q)$
+\end{dfnt}
+
+De la même façon pour un algorithme MCF $A$ on peut définir,
+
+\begin{dfnt}
+  Le meilleur exposant pour $\theta$ de l'approximation en utilisant $A$:
+  $\eta_A(\theta)=\underset{n \to \infty}{limsup}(\underset{1 \leq i \leq d+1}{max} \eta(w^n_i(\theta)))$
+\end{dfnt}
+
+\begin{dfnt}
+  L'exposant uniforme pour $\theta$ de l'approximation en utilisant $A$:
+  $\eta^*_A(\theta)=\underset{n \to \infty}{liminf}(\underset{1 \leq i \leq d+1}{min} \eta(w^n_i(\theta)))$
+\end{dfnt}
+
+\section{Convergence des algorithmes}
+
+Un algorithme est dis faiblement convergent si $w_i^(n)\to \theta = (\theta_1,...,\theta_d)$ pour $1 \leq i \leq d+1$
+Géométriquement l'angle entre les vecteurs et la demi-droite considérés tend vers $0$.
+
+Un algorithme est dis fortement convergent si $|c_{i,d+1}^{n}(\theta-w_i^(n)) \to 0$
+Les vecteurs deviennent arbitrairement proches de la demi-droite
+
+\section{Oseledec's Multiplicative Ergodic Theorem}
+
+\begin{thm}
+Soit $(X,\zeta,d\mu)$ un espace de probabilité et $T : X \to X$ une application $\zeta$-mesurable et préservant la mesure.
+Soit $A:X \to GL(d,\mathbb{R})$ mesurable, et posons $A^(n)(x)=A(T^(n-1)(x))...A(T(x))A(x)$
+Supposons que $\mathbb{E}(log(max(\|A\|,1)))<\infty$
+Alors il existe un ensemble mesurable $Z$ de mesure $1$ tel que $\forall x \in Z$ il y a
+\begin{enumerate}
+      \item un entier $r(x)$ tel que $0<r(x)<d$
+      \item $r(x)$ différents nombre $\lambda_{r(x)}(x)<...<\lambda_1(x)$
+      \item un ensemble de sous-espaces vectoriels $\mathbb{R}^d = E_1(x) \supsetneqq E_2(x)... \supsetneqq E_{r(x)} \supsetneqq E_{r(x)+1}={0}$ tel que si $v \in E_i(x)-E_{i+1}(x) \leftrightarrow lim_{n \to \infty} \frac{1}{n} log \|A^n (x)v\|= \lambda_i (x)$
+      \item la limite $lim_{n \to infty} [A^n(x) {}^t A^n(x)]^{\frac{1}{n}}=A^{\infty}(x)$ existe et ses valeurs propres sont $e^{\lambda_i(x)}$ avec multiplicité $d_i$ avec comme espace propre $E_i(x)$
+\end{enumerate}
+Si en plus $T$ est ergodique pour $d \mu$ alors il y a un ensemble $Z'$ de mesure 1 tel que $r(x),\lambda_1(x),...,\lambda_{r(x)}(x),dim E_1(x),..., dim E_{r(x)}(x)$ sont constants $r,\lambda_1,\lambda_r,d_1,...,d_r$
+\end{thm}
+
+\section{Convergence de l'algorithme de Brun}
+
+\begin{dfnt}
+Soit $B={(x_1,x_2); 1 \geq x_1 \geq x_2 \geq 0}$, l'algorithme de Brun est généré par la fonction $S:B(j,N) \to B$ avec
+$$
+\left \{
+\begin{array}{r c }
+S(x_1,x_2)=(\frac{1}{x_1}-N,\frac{x_2}{x_1}) \, si \, \frac{1}{x_1}-N \geq \frac{x_2}{x_1} & [j=1] \\
+S(x_1,x_2)=(\frac{x_2}{x_1},\frac{1}{x_1}-N) \, si \, \frac{x_2}{x_1} \geq  \frac{1}{x_1}-N & [j=2] \\
+N:=[\frac{1}{x_1}]
+\end{array}
+\right .
+$$
+\end{dfnt}
+
+\section{Unicité de la mesure $\tilde{\pi}$}
+\begin{thm}
+La mesure $\tilde{\pi}$ est l'unique mesure de probalité sur $\Delta$ qui se prette sur la mesure $\pi$ sue $X$ et qui est invariante par $\tilde{P}$
+\end{thm}
+
+\begin{lem}
+Soit $\omega_n=(a_1,...,a_n)$ admissible. Alors la loi $\eta_{\omega_n}$ de $x_n$ sachant $\omega_n$ a pour densité (par rapport à $\pi$):$$
+\frac{d \eta_{\omega_n}}{d \pi}(x)=\frac{p(x,\omega_n)}{\int_X p(x,\omega_n) d \pi (x)}
+$$
+\end{lem}
+\begin{dfnt}
+On appelle $S_(f)$ l'ensemble des suites admissibles de longueur finie. On note $M$ l'adhérence de l'ensemble des mesures $\eta_\omega$ quand $\omega$ parcourt $S_(f)$
+\end{dfnt}
+
+\begin{lem}
+Si $\eta$ est dans $M$; alors $\eta$ admet une densité par rapport à $\pi$ qui est une fonction analytique sur $X$. $M$ est relativement compact pour la norme des variations des mesures.
+\end{lem}
+
+\begin{lem}
+Soit $a$ dans $A_2$; pour $\pi$-presque tout $x$ de $X$, si $p(x,a)$ n'est pas nul, on a:$$
+p(Tx,a)\frac{d a* \pi}{d \pi}(x)=
+\left \{
+\begin{array}{r c }
+0 \, si \,  a \ne a^x \\
+1 \, si \, a=a^x
+\end{array}
+\right .
+$$
+\end{lem}
+
+\begin{lem}
+Soit $\tilde{\nu}$ une mesure sur $\delta$ de la forme $\tilde{\nu}(f)=\int_\delta f(x,u)\nu_x(du)\pi(dx)$ Alors $\tilde{\nu}$ est invariante par $\tilde(P)$ si et seulement si pour $\pi$-presque tout $x$ de $X$, on a:$$
+a^x*\nu_{Tx}=\nu_x
+$$
+\end{lem}
+
+\begin{lem}
+Soit $p$ un point de $P^2$, soit $\tilde{\nu}$ une mesure de probabilité sur $\delta$ qui est invariante par $\tilde(P)$. Soit $\sigma$ une permutation de $\Sigma_2$ et $W_\sigma$ la partie de $X$ correspondante. Alors sur un ensemble non négligeable de $W_\sigma$ on a: $\nu_x(\tilde(p))<1 $
+\end{lem}
+\end{document}
