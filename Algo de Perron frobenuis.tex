@@ -193,6 +193,53 @@ $$
 \end{lem}
 
 \begin{lem}
-Soit $p$ un point de $P^2$, soit $\tilde{\nu}$ une mesure de probabilité sur $\delta$ qui est invariante par $\tilde(P)$. Soit $\sigma$ une permutation de $\Sigma_2$ et $W_\sigma$ la partie de $X$ correspondante. Alors sur un ensemble non négligeable de $W_\sigma$ on a: $\nu_x(\tilde(p))<1 $
+Soit $p$ un point de $P^2$, soit $\tilde{\nu}$ une mesure de probabilité sur $\delta$ qui est invariante par $\tilde(P)$. Soit $\sigma$ une permutation de $\Sigma_2$ et $W_\sigma$ la partie de $X$ correspondante. Alors sur un ensemble non négligeable de $W_\sigma$ on a: $\nu_x(\tilde{p})<1 $
 \end{lem}
+
+Définissons maintenant $\nu'_{\omega_n}(f)=\int_X \nu_x f d\nu_{\eta_{\omega_n}(x)}=\frac{\int_X f(x,u) \nu_x (du) p(x,\omega_n) d \pi(x)}{\int_X p(x,\omega_n) d \pi(x)}$
+Nous avons alors la proposition:
+
+\begin{prop}
+Soit $x \in X$ dont le dévellopemment de Jacobi-Perron est $(a_n)$, soit $\nu$ une mesure de probabilité sur $\Delta$ in variante par l'action de $\tilde{P}$, alors $a_1 ... a_n \nu'_{\omega_n}=\omega_n \nu'_{\omega_n}$ est une martingale qui converge $\pi$-presque partout vers $\nu_x$.
+De plus pour $\pi$- presque tout $x,\zeta_x$ est un atome de $\nu_x$
+\end{prop}
+
+\section{Propieté de contraction de $\tilde{P}$}
+
+\begin{lem}
+La série $\sum_{\omega_n} [log(\omega_n,\zeta)]^2 e^{\epsilon |log(\omega_n,\zeta)|}p(x,\omega_n)$ converge uniformément sur $\bar{M}$
+\end{lem}
+
+\begin{lem}
+$\exists \gamma \in \mathbb{R}$, avec $\lambda_1 \leq \gamma < 0$ tel que pour $n$ suffisament grand nous ayons:$$
+\sum_{\omega_n} log(\theta(\omega_n,\zeta_n))p(x,\omega_n,\sigma_n) \leq n \gamma <0
+$$
+\end{lem}
+
+\section{Equations de la preuve de Schratzberger}
+(1)
+$\Omega_B^{(t)}=\begin{pmatrix}
+q^{(t)} & q^{(t')} & q^{(t'')} \\
+p_1^{(t)} & p_1^{(t')} & p_1^{(t'')}\\
+p_2^{(t)} & p_2^{(t')} & p_2^{(t'')}
+\end{pmatrix}
+:= \Omega_B^{(t-1)} \Lambda_B^{(t-1)}$
+\newline
+(2)
+$x_i^(0)=\frac{p_i^{(t)}+x_1^{(t)}p_i^{(t')}+x_2^{(t)}p_i^{(t'')}}{q^{(t)}+x_1^{(t)}q^{(t')}+x_2^{(t)}q^{(t'')}}$
+\newline
+(3)
+if $j(t)=1$ $q^{(t+2)}=N^{(t+1)}q^{(t+1)}+q^{(t)}$
+\newline
+(4)
+if $j(t)=2$ $q^{(t+2)}=N^{(t+1)}q^{(t+1)}+q^{(t^*)}$
+\newline
+(5)
+(6)
+(7)
+(8)
+(9)
+(10)
+(11)
+(12)
 \end{document}
