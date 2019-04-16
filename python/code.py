@@ -23,31 +23,55 @@ def iteration(a,b,c):
 def execut(n):
     trace_triangle()
     a,b,c=1,np.pi,np.e
-    Ma=np.array([[1,1,0],[0,0,1],[0,1,0]])
-    Mb=np.array([[0,1,0],[1,0,0],[0,1,1]])
     xlist=[]
     ylist=[]
     jlist=[]
+    rho=[]
+    denominateur=[]
+    Ma=np.array([[1,1,0],[0,0,1],[0,1,0]])
+    Mb=np.array([[0,1,0],[1,0,0],[0,1,1]])
+    M=np.eye(3)
     for i in range(1,n):
         (x,y)=change_coordone(a,b,c)
         xlist.append(x)
         ylist.append(y)
         a,b,c,j=iteration(a,b,c)
         jlist.append(j)
-    M=calcul_matrice(jlist)
-    pl.scatter(xlist,ylist)
+        if j==1:
+            M=np.dot(M,Ma)
+        else :
+            M=np.dot(M,Mb)
+        P,Q,R=calcul_mineur(M)
+        rho.append(max(np.abs(Q),np.abs(R))/max(M[0,1],1))
+        denominateur.append(max(M[0,1],1))
+    #pl.scatter(xlist,ylist)
     print(M)
+    print(rho)
+    print(denominateur)
+
 
 execut(50)
 
 def calcul_matrice(jlist):
-    M=np.eye(3)
     for i in range(len(jlist)):
         if jlist[i]==1:
             M=np.dot(M,Ma)
         else :
             M=np.dot(M,Mb)
     return M
+
+def calcul_mineur(M):
+    P=M[0:2,0:2]
+    Q=M[0:2,1:3]
+    R=M[0:2,0:3:2]
+    return (np.linalg.det(P),np.linalg.det(Q),np.linalg.det(R))
+
+calcul_mineur(Mb)
+Mb=np.array([[0,1,0],[1,0,0],[0,1,1]])
+Mb
+P=Mb[0:2,0:3:2]
+print(P)
+Mb[1,2]
 
 # TODO : calculer les mineurs de tailles deux
 # TODO : estimer les exposants de Lyoupanov
