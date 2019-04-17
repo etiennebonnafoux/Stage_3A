@@ -1,0 +1,77 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper,left=2cm,right=2cm,top=2.5cm,bottom=2cm]{geometry}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{babel}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{color}
+\usepackage{dsfont}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{pifont}
+
+\theoremstyle{plain}% default
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{lem}[thm]{Lemme}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollaire}
+\theoremstyle{definition}
+\newtheorem{dfnt}{Définition}[section]
+\newtheorem{exmp}{Exemple}[section]
+\newtheorem{xca}[exmp]{Exercice}
+\theoremstyle{remark}
+\newtheorem*{rmq}{Remarque}
+\newtheorem*{note}{Note}
+\newtheorem{case}{Case}
+
+\crefname{thm}{théorème}{théorèmes}
+\crefname{lem}{lemme}{lemmes}
+\crefname{prop}{proposition}{propositions}
+\crefname{cor}{corollaire}{corollaires}
+\crefname{dfnt}{définition}{définitions}
+\crefname{exmp}{exemple}{exemples}
+\crefname{xca}{exercice}{exercices}
+\crefname{rmq}{remarque}{remarques}
+\crefname{note}{note}{notes}
+\crefname{case}{case}{cases}
+
+\newcommand{\ncref}[1]{\cref{#1} "\nameref{#1}"}
+\newcommand{\Ncref}[1]{\Cref{#1} \Nameref{#1}}
+
+\begin{document}
+
+\section{Definition}
+
+\begin{dfnt}
+Soit $B=\{(x_1,x_2); 1 \geq x_1 \geq x_2 \geq 0\}$, l'algorithme de Brun est généré par la fonction $T: \to B$ avec
+$$
+\left \{
+\begin{array}{r c }
+T(x_1,x_2)=(\frac{1}{x_1}-N,\frac{x_2}{x_1}) \, si \, \frac{1}{x_1}-N \geq \frac{x_2}{x_1} & [j=1] \\
+T(x_1,x_2)=(\frac{x_2}{x_1},\frac{1}{x_1}-N) \, si \, \frac{x_2}{x_1} \geq  \frac{1}{x_1}-N & [j=2] \\
+N:=[\frac{1}{x_1}]
+\end{array}
+\right .
+$$
+\end{dfnt}
+En itérant la fonction, nous obtenons une suite de nombre $(x_1^n,x_2^n)$ ainsi que $j(n)$ et $N(n)$.
+Nous pouvons alors donner une version plus vectoriel de ce processus allant de l'hyperplan $\mathbb{R}^2 \times \{1 \} $ dans lui même.
+$$
+\tilde{T}:\begin{pmatrix} 1 \\ x_1^{(n)} \\ x_2^{(n)} \end{pmatrix} \mapsto \begin{pmatrix} 1 \\ x_1^{(n+1)} \\ x_2^{(n+1)} \end{pmatrix} = \left \{
+\begin{array}{r c}
+\frac{1}{x_1^n}\begin{pmatrix} 0 & 1 & 0 \\0 & -N(n) & 0 \\0 & 0& 1 \end{pmatrix} \begin{pmatrix} 1 \\ x_1^{(n)} \\ x_2^{(n)} \end{pmatrix} \, si \, j(n)=1\\
+\frac{1}{x_1^n}\begin{pmatrix} 0 & 1 & 0 \\0 & 0 & 1 \\0 & -N(n) & 0 \end{pmatrix} \begin{pmatrix} 1 \\ x_1^{(n)} \\ x_2^{(n)} \end{pmatrix}\, si \, j(n)=2\\
+\end{array}
+\right .
+$$
+Soit $A_1^n=\begin{pmatrix} N(n) & 1 & 0 \\1 & 0 & 0 \\0 & 0 & 1 \end{pmatrix}$ et $A_2^n=\begin{pmatrix} N(n) & 0 & 1 \\1 & 0 & 0 \\0 & 1 & 0 \end{pmatrix}$ l'inverse des deux matrices ci-dessus. Nous posons de plus $S_n=A_{j(1)}^1 A_{j(2)}^2 ... A_{j(n)}^n$, alors nous avons:$$
+\begin{pmatrix} 1 \\ x_1^{(0)} \\ x_2^{(0)} \end{pmatrix} = (\prod_{1 \leq i \leq n} x_1^{(i)})S_n \begin{pmatrix} 1 \\ x_1^{(n+1)} \\ x_2^{(n+1)} \end{pmatrix}
+$$
+\end{document}
