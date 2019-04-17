@@ -74,4 +74,21 @@ $$
 Soit $A_1^n=\begin{pmatrix} N(n) & 1 & 0 \\1 & 0 & 0 \\0 & 0 & 1 \end{pmatrix}$ et $A_2^n=\begin{pmatrix} N(n) & 0 & 1 \\1 & 0 & 0 \\0 & 1 & 0 \end{pmatrix}$ l'inverse des deux matrices ci-dessus. Nous posons de plus $S_n=A_{j(1)}^1 A_{j(2)}^2 ... A_{j(n)}^n$, alors nous avons:$$
 \begin{pmatrix} 1 \\ x_1^{(0)} \\ x_2^{(0)} \end{pmatrix} = (\prod_{1 \leq i \leq n} x_1^{(i)})S_n \begin{pmatrix} 1 \\ x_1^{(n+1)} \\ x_2^{(n+1)} \end{pmatrix}
 $$
+Nous pouvons voir $S_n$ comme les coordonées d'une base dont les trois vecteurs formeraient un cône se convergeant vers la droite $D=t \times (1,x_1^{(0)},x_2^{(0)})$. \newline
+Nous noterons également $S_n=\begin{pmatrix} a^{(n)} & a^{(n')} & a^{(n'')} \\ b_1^{(n)} & b_1^{(n')} & b_1^{(n'')} \\ b_2^{(n)} & b_2^{(n')} & b_2^{(n'')} \end{pmatrix}$ \newline
+
+Nous avons alors $a^{(n+1)}=N(n)a^{(n)}+a^{(n')},a^{(n+1)'}=a^{(n)},a^{(n+1)''}=a^{(n'')}$ si $j(n)=1$, sinon $a^{(n+1)}=N(n)a^{(n)}+a^{(n')},a^{(n+1)'}=a^{(n'')},a^{(n+1)''}=a^{(n)}$. Ce résultat vaut aussi pour $b_1$ et $b_2$.
+
+\section{Exposant de Lyapounov}
+
+Nous pouvons aussi écrire $S_n=\begin{pmatrix} e_1^n & e_2^n & e_3^n\end{pmatrix}$.
+ Nous avons alors $\lambda_1= lim_{n\to \infty} max \frac{1}{n}\|e_i^n\|$ le premier exposant de Lyapounov.\newline
+ Définissons alors $\beta_1=e_2 \land e_3$, $\beta_2=e_3 \land e_1$ et $\beta_3=e_1 \land e_2$.
+ Puis $\Lambda A_i \beta_j=A_i e_{j+1} \land A_i e_{j+2}$ et $\Lambda S^n=\Lambda A_{j(1)}^1  \Lambda A_{j(2)}^2 ... \Lambda A_{j(n)}^n$. \newline
+ Nous avons alors $\beta_1^{n+1}=-\beta_2^{n},\beta_2^{n+1}=N(n) \beta_2^n-\beta_1^n,\beta_3^{n+1}=-\beta_3^n$
+  si $j(n)=1$, sinon $\beta_1^{n+1}=\beta_2^{n},\beta_2^{n+1}=\beta_3,\beta_3^{n+1}=-N(n) \beta_2^n+\beta_1^n $
+  Nous avons alors $\lambda_1 + \lambda_2= lim_{n\to \infty} max \frac{1}{n}\|\beta_i^n\|$ \newline
+  Nous voyons alors qu'il suffit de montrer que $\|\beta^n\| \leq K \|e^n\|$ pour que $\lambda_2 \leq 0$ avec $K$ une constante positive. \newline
+  Dans la suite nous poserons $s_n= max e_i^n$ et $\Delta_n=max \beta_i^n$. Nous vonlons donc montrer $\Delta_n \leq K s_n$
+\section{Convergence}
 \end{document}
