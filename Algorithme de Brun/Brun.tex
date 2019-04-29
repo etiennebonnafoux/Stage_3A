@@ -45,13 +45,14 @@
 \newcommand{\ncref}[1]{\cref{#1} "\nameref{#1}"}
 \newcommand{\Ncref}[1]{\Cref{#1} \Nameref{#1}}
 
-\begin{document}
 
+\begin{document}
+\part*{Convergence de l'algorithme de Brun}
 \section{Definition}
 
 \begin{dfnt}
-Soit $B=\{(x_1,x_2); 1 \geq x_1 \geq x_2 \geq 0\}$, l'algorithme de Brun est généré par la fonction $T: \to B$ avec
-$$
+Soit $B=\{(x_1,x_2); 1 \geq x_1 \geq x_2 \geq 0\}$. L'algorithme de Brun est généré par la fonction $T: \to B$ avec
+\[
 \left \{
 \begin{array}{r c }
 T(x_1,x_2)=(\frac{1}{x_1}-N,\frac{x_2}{x_1}) \, si \, \frac{1}{x_1}-N \geq \frac{x_2}{x_1} & [j=1] \\
@@ -59,54 +60,57 @@ T(x_1,x_2)=(\frac{x_2}{x_1},\frac{1}{x_1}-N) \, si \, \frac{x_2}{x_1} \geq  \fra
 N:=[\frac{1}{x_1}]
 \end{array}
 \right .
-$$
+\]
 \end{dfnt}
-En itérant la fonction, nous obtenons une suite de nombre $(x_1^n,x_2^n)$ ainsi que $j(n)$ et $N(n)$.
+En itérant la fonction, nous obtenons une suite de nombre $(x_1^n,x_2^n)$ ainsi que deux suites d'entier $(j(n))$ et $(N(n))$.
 Nous pouvons alors donner une version plus vectoriel de ce processus allant de l'hyperplan $\mathbb{R}^2 \times \{1 \} $ dans lui même.
-$$
+\[
 \tilde{T}:\begin{pmatrix} 1 \\ x_1^{(n)} \\ x_2^{(n)} \end{pmatrix} \mapsto \begin{pmatrix} 1 \\ x_1^{(n+1)} \\ x_2^{(n+1)} \end{pmatrix} = \left \{
 \begin{array}{r c}
 \frac{1}{x_1^n}\begin{pmatrix} 0 & 1 & 0 \\1 & -N(n) & 0 \\0 & 0& 1 \end{pmatrix} \begin{pmatrix} 1 \\ x_1^{(n)} \\ x_2^{(n)} \end{pmatrix} \, si \, j(n)=1\\
 \frac{1}{x_1^n}\begin{pmatrix} 0 & 1 & 0 \\0 & 0 & 1 \\1 & -N(n) & 0 \end{pmatrix} \begin{pmatrix} 1 \\ x_1^{(n)} \\ x_2^{(n)} \end{pmatrix}\, si \, j(n)=2\\
 \end{array}
 \right .
-$$
-Soit $A_1^n=\begin{pmatrix} N(n) & 1 & 0 \\1 & 0 & 0 \\0 & 0 & 1 \end{pmatrix}$ et $A_2^n=\begin{pmatrix} N(n) & 0 & 1 \\1 & 0 & 0 \\0 & 1 & 0 \end{pmatrix}$ l'inverse des deux matrices ci-dessus. Nous posons de plus $S_n=A_{j(1)}^1 A_{j(2)}^2 ... A_{j(n)}^n$, alors nous avons:$$
+\]
+Soit $A_1^n=\begin{pmatrix} N(n) & 1 & 0 \\1 & 0 & 0 \\0 & 0 & 1 \end{pmatrix}$ et $A_2^n=\begin{pmatrix} N(n) & 0 & 1 \\1 & 0 & 0 \\0 & 1 & 0 \end{pmatrix}$ l'inverse des deux matrices ci-dessus. Nous posons de plus $S_n=A_{j(1)}^1 A_{j(2)}^2 ... A_{j(n)}^n$, nous avons alors:\[
 \begin{pmatrix} 1 \\ x_1^{(0)} \\ x_2^{(0)} \end{pmatrix} = (\prod_{1 \leq i \leq n} x_1^{(i)})S_n \begin{pmatrix} 1 \\ x_1^{(n+1)} \\ x_2^{(n+1)} \end{pmatrix}
-$$
-Nous pouvons voir $S_n$ comme les coordonées d'une base dont les trois vecteurs formeraient un cône se convergeant vers la droite $D=t \times (1,x_1^{(0)},x_2^{(0)})$. \newline
-Nous noterons également $S_n=\begin{pmatrix} a^{(n)} & a^{(n')} & a^{(n'')} \\ b_1^{(n)} & b_1^{(n')} & b_1^{(n'')} \\ b_2^{(n)} & b_2^{(n')} & b_2^{(n'')} \end{pmatrix}$ \newline
+\]
+Nous pouvons voir $S_n$ comme les coordonées d'une base dont les trois vecteurs formeraient un cône convergeant vers la droite $D=t \times (1,x_1^{(0)},x_2^{(0)})$. \newline
+Nous noterons $S_n=\begin{pmatrix} a^{(n)} & a^{(n')} & a^{(n'')} \\ b_1^{(n)} & b_1^{(n')} & b_1^{(n'')} \\ b_2^{(n)} & b_2^{(n')} & b_2^{(n'')} \end{pmatrix}$ \newline
 
 Nous avons alors :
-
+\begin{center}
 \begin{tabular}{c|c|c|c|}
   & $a^{(n+1)}$ & $a^{(n+1)'}$ & $a^{(n+1)''}$\\
 \hline
 $j(n)=1$ & $N(n)a^{(n)}+a^{(n')}$ & $a^{(n)}$ & $a^{(n'')}$ \\
 $j(n)=2$ & $N(n)a^{(n)}+a^{(n')}$ & $a^{(n'')}$ & $a^{(n)}$ \\
 \end{tabular}
-
+\end{center}
 Ce résultat vaut aussi pour $b_1$ et $b_2$.
 
 \section{Exposant de Lyapounov}
 
-Nous pouvons aussi écrire $S_n=\begin{pmatrix} e_1^n & e_2^n & e_3^n\end{pmatrix}$.
- Nous avons alors $\lambda_1= lim_{n\to \infty} max \frac{1}{n}\|e_i^n\|$ le premier exposant de Lyapounov.\newline
+Nous pouvons aussi écrire $S_n=\begin{pmatrix} e_1^n & e_2^n & e_3^n\end{pmatrix}$ où les $e_i^n$ sont des vecteurs colonnes.
+ Le premier exposant de Lyapounov est donné par $\lambda_1= \underset{n\to \infty}{\lim} \max \frac{1}{n} \log(\|e_i^n\|)$ .\newline
  Définissons alors $\beta_1=e_2 \land e_3$, $\beta_2=e_3 \land e_1$ et $\beta_3=e_1 \land e_2$.
- Puis $\Lambda A_i \beta_j=A_i e_{j+1} \land A_i e_{j+2}$ et $\Lambda S^n=\Lambda A_{j(1)}^1  \Lambda A_{j(2)}^2 ... \Lambda A_{j(n)}^n$. \newline
- Nous avons alors :
+ Puis étendons l'action de la matrice $A_j$ à ces nouveaux vecteurs en posant $\Lambda A_j \beta_i=A_j e_{i+1} \land A_j e_{i+2}$ et $\Lambda S^n=\Lambda A_{j(1)}^1  \Lambda A_{j(2)}^2 ... \Lambda A_{j(n)}^n$. \newline
+ Nous pouvons calculer les relations suivantes:
+ \begin{center}
   \begin{tabular}{c|c|c|c|}
     & $\beta_1^{n+1}$ & $\beta_2^{n+1}$ & $\beta_3^{n+1}$\\
   \hline
   $j(n)=1$ & $-\beta_2^{n}$ & $N(n) \beta_2^n-\beta_1^n$ & $-\beta_3^n$ \\
   $j(n)=2$ & $\beta_2^{n}$ & $\beta_3$ & - $N(n) \beta_2^n+\beta_1^n$ \\
   \end{tabular}
-  Nous avons alors $\lambda_1 + \lambda_2= lim_{n\to \infty} max \frac{1}{n}\|\beta_i^n\|$ \newline
+  \end{center}
+  Nous avons alors $\lambda_1 + \lambda_2= lim_{n\to \infty} max \frac{1}{n} \log(\|\beta_i^n\|)$ \newline
   Nous voyons alors qu'il suffit de montrer que $\|\beta^n\| \leq K \|e^n\|$ pour que $\lambda_2 \leq 0$ avec $K$ une constante positive. \newline
-  Dans la suite nous poserons $s_n= \max e_i^n$ et $\rho_n=\max \beta_i^n$. Nous vonlons donc montrer $\rho_n \leq K s_n$.\newline
-  Nous pouvons déjà remarque que nous pouvons nous limiter à $\rho_n) \max{(\beta_2^n, \beta_3^n)}$. De plus il est trop difficile d'obtenir cette inégalité pour tout $(x_1,x_2) \in B$, nous considérons donc l'ensemble $\{(x_1,x_2)\in B;j(0)=j(1)=j(2)=2\}=M \subset B$.
+  Dans la suite nous poserons $s_n= \max \|e_i^n\|$ et $\rho_n=\max \frac{\beta_i^n}{s_n}$. Nous vonlons donc montrer $\rho_n \leq K$.\newline
+  Comme les exposants de Lyapounov ne dépendent pas de la norme, nous prenons la norme infini et alors $s_n=a^{(n)}$. Il faut également remarquer que la suite $(s_n)$ est croissante.
+  De même nous pouvons remarquer qu'on peut se limiter à $\rho_n= \max{(\frac{\beta_2^n}{s_n}, \frac{\beta_3^n}{s_n})}$. De plus il est trop difficile d'obtenir cette inégalité pour tout $(x_1,x_2) \in B$, nous considérons donc l'ensemble $\{(x_1,x_2)\in B;j(0)=j(1)=j(2)=2\}=M \subset B$.
 \section{Convergence}
-Dans cette partie nous considérons que $(x_1^n,x_2^n)\in M$.
+Dans cette partie nous considérons donc que $(x_1^n,x_2^n)\in M$.
 \begin{lem}
 $\|\beta_1^{n+1}\| \leq s_n \rho_n$
 \end{lem}
@@ -117,20 +121,37 @@ Cela vient du fait que $\|\beta_1^{n+1}\|=\| \beta_2^n\| \leq s_n \rho_n$
 $\rho_{n+4} \leq (1-\frac{s_n}{s_{n+4}})\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})}$
 \end{lem}
 \begin{proof}
-Il y a deux cas \newline
+Il y a deux cas en fonction de $j(n+3)$\newline
 1) $\| \beta_3^{n} \| \leq s_{n+3} \rho_{n+3} \leq (s_{n+4}-s_n) \max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})} $\newline
-2) $\|N(n+3) \beta_2^{n+3} - \beta_1^{n+3} \| = \|N(n+3) \beta_3^{n+2} - \beta_2^{n+2} \| =\|N(n+3) \beta_3^{n+2} - \beta_3^{n+1} \| \leq (N(n+3)s_{n+2}+s_{n+1})\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})} \leq (N(n+3)N(n+2)s_{n+2}+N(n+3)s_n+s_{n+1}+s_n)\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})} \leq (N(n+3)s_n{n+3}+s_{n+1}-s_n)\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})} \leq (s_{n+4}-s_n)\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})}$
+2)\[\begin{array}{c c l}
+\|N(n+3) \beta_2^{n+3} - \beta_1^{n+3} \| & = &\|N(n+3) \beta_3^{n+2} - \beta_2^{n+2} \|\\
+ & = & \|N(n+3) \beta_3^{n+2} - \beta_3^{n+1} \| \\
+ & \leq & (N(n+3)s_{n+2}+s_{n+1})\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})} \\
+ & \leq & (N(n+3)N(n+2)s_{n+2}+N(n+3)s_n+s_{n+1}+s_n)\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})} \\
+ & \leq &  (N(n+3)s_{n+3}+s_{n+1}-s_n)\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})} \\
+ & \leq & (s_{n+4}-s_n)\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})}
+\end{array}
+\]
 \end{proof}
 \begin{lem}
 $\rho_{n+5} \leq (1-\frac{s_n}{s_{n+5}})\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})}$
 \end{lem}
 \begin{proof}
-Le premier cas se traite à l'aide du lemme précédent: \newline
-1) $\| \beta_3^{n+4} \| \leq s_{n+4} \rho_{n+4} \leq (s_{n+4}-s_n)\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})} \leq (s_{n+5}-s_n)\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})}$ \newline
+1) Le premier cas se traite à l'aide du lemme précédent:\[
+\begin{array}{c c l}
+\| \beta_3^{n+4} \|& \leq & s_{n+4} \rho_{n+4} \leq (s_{n+4}-s_n)\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})}\\
+ & \leq & (s_{n+5}-s_n)\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})}
+\end{array}
+\]
 Dans le deuxieme cas il faut considérer deux sous cas:\newline
 1) Si $j(n+3)=2$, dans ce cas nous pouvons réutiliser la même preuve que dans le lemme précédent. \newline
 2) Si $j(n+3)=1$, nous avons alors:\newline
-$\|N(n+4) \beta_2^{n+4}-\beta_1^{n+4}\| \leq N(n+4)(s_{n+4}-s_n)\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})} + s_{n+3} \rho_{n+3} \leq (N(n+4)s_{n+4}+s_{n+3}-s_n)\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})}=(s_{n+5}-s_n)\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})}$
+\[\begin{array}{c c l}
+\|N(n+4) \beta_2^{n+4}-\beta_1^{n+4}\|& \leq & N(n+4)(s_{n+4}-s_n)\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})} + s_{n+3} \rho_{n+3}\\
+ & \leq & (N(n+4)s_{n+4}+s_{n+3}-s_n)\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})} \\
+ & =& (s_{n+5}-s_n)\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})}
+\end{array}
+\]
 \end{proof}
 \begin{lem}
 $\rho_{n+6} \leq (1-\frac{s_n}{s_{n+6}})\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})}$
@@ -142,29 +163,46 @@ Comme $\rho_{n+4} \leq \max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})}$, Nous pouvons r
 Soit $m \geq n+6$, nous avons $\rho_m \leq (1-\frac{s_n}{s_{n+6}})\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})}$
 \end{lem}
 \begin{proof}
-La preuve se fait par récurrence. Supposons que nous ayons montré $\rho_{m-1},\rho{m-2},\rho{m-3} \leq (1-\frac{s_n}{s_{n+6}})\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})}$. L'initialisation a été faite dans les lemmes précédents. Nous avons alors deux cas: \newline
-$\| \beta_3^{n+1} \| \leq \rho_{m-1} s_{m-1} \leq \rho_{m-1} s_m$ \newline
+La preuve se fait par récurrence. Supposons que nous ayons montré $\rho_{m-1},\rho_{m-2},\rho_{m-3} \leq (1-\frac{s_n}{s_{n+6}})\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})}$. L'initialisation a été faite dans les lemmes précédents. Nous avons alors deux cas en fonction de $j(m-1)$: \newline
+$\| \beta_3^{m} \| \leq \rho_{m-1} s_{m-1} \leq \rho_{m-1} s_m$ \newline
 Dans l'autre cas nous faisons une première disjonction de cas:\newline
 1) $j(m-2)=1$ dans ce cas $\|N(m-1)\beta_2^{m-1} \pm \beta_2^{m-2}\| \leq (N(m-1)s_{m-1}+s_{m-2}) \max{(\rho_{m-1},\rho_{m-2})}=s_m \max{(\rho_{m-1},\rho_{m-2})}$\newline
 2)$j(m-2)=2$ dans ce cas nous devons faire une autre disjonction de cas \newline
-2.1) $j(m-3)=1$, $\|N(m-1)\beta_2^{m-1} \pm \beta_2^{m-2}\|=\|N(m-1)\beta_3^{m-2} \pm \beta_2^{m-2}\|=\|N(m-1)\beta_3^{m-3} \pm \beta_2^{m-2}\| \leq (N(m-1)s_{m-1}+s_{m-3}) \max{(\rho_{m-1},\rho_{m-3})}=s_m \max{(\rho_{m-1},\rho_{m-3})} $\newline
-2.2) $j(m-3)=2$, $\|N(m-1)\beta_2^{m-1} \pm \beta_2^{m-2}\|=\|N(m-1)\beta_2^{m-1} \pm \beta_3^{m-3}\| \leq (N(m-1)s_{m-1}+s_{m-3})\max{(\rho_{m-1},\rho_{m-3})}=s_m \max{(\rho_{m-1},\rho_{m-3})}$
+2.1)$j(m-3)=1$
+\[
+\begin{array}{c c l}
+\|N(m-1)\beta_2^{m-1} \pm \beta_2^{m-2}\| & = & \|N(m-1)\beta_3^{m-2} \pm \beta_2^{m-2}\| \\
+& = & \|N(m-1)\beta_3^{m-3} \pm \beta_2^{m-2}\| \\
+& \leq & (N(m-1)s_{m-1}+s_{m-3}) \max{(\rho_{m-1},\rho_{m-3})} \\
+& = & s_m \max{(\rho_{m-1},\rho_{m-3})}
+\end{array}
+\]
+2.2) $j(m-3)=2$,
+\[
+\begin{array}{c c l}
+\|N(m-1)\beta_2^{m-1} \pm \beta_2^{m-2}\| & = & \|N(m-1)\beta_2^{m-1} \pm \beta_3^{m-3}\| \\
+& \leq & (N(m-1)s_{m-1}+s_{m-3})\max{(\rho_{m-1},\rho_{m-3})} \\
+& = & s_m \max{(\rho_{m-1},\rho_{m-3})}
+\end{array}
+\]
 \end{proof}
 
 Nous noterons $\tau_n=\max{(\rho_{n+3},\rho_{n+2},\rho_{n+1})}$.\newline
-Nous pouvons également montrer que $\mu(M)>0$. Or comme la dynamique est erodique, nous pouvons considérer la sous suite $(x_1^{t_n},x_2^{t_n})\in M$ et nous noterons $T_M$ la fonction qui lui est associée. Nous avons donc pour cette suite là $\tau_{t_{n+1}} \leq \tau_{t_{n}}(1-\frac{s_{t_n}}{s_{t_n+6}})$. \newline
-Or nous avons $s_{t_n+6} \leq 16 N(n+6)N(n+5)N(n+4)N(n+3)N(n+2)N(n+1)s_{t_n}$ et donc $0 \leq \frac{\tau_{t_{n+1}}}{\tau_{t_{n}}} \leq 1-\frac{1}{16 N(n+6)N(n+5)N(n+4)N(n+3)N(n+2)N(n+1)} \leq 1$. Nous noterons $f(x_1,x_2)=\log{1-\frac{1}{16 N(6)N(5)N(4)N(3)N(2)N(1)}}$.
-D'après le théorème ergodique nous avons $\underset{n \to \infty}{lim}\frac{1}{n}\sum_{k \leq n}f(T_m^k(x_1,x_2)) \to \log(K1) <0$.Nous avons donc$$
-\tau_m \leq c K_1^{m}
-$$
-Or comme $\frac{\tau_m}{m} \to \frac{1}{\mu(M)}$, nous pouvons écrire$$
-\tau_m \leq c K_1^{t_m}
-$$
-Puis pour $n$ suffisament grand$$
-\rho_n \leq c K_1^n
-$$
-De même nous avons$$
+Nous pouvons montrer que $\mu(M)>0$. Or comme la dynamique est ergodique, pour presque tout $(x_1,x_2) \in B$, la suite générée passe une infinité de fois par $M$. Nous pouvons considérer la sous suite $(x_1^{t_n},x_2^{t_n})\in M$ des éléments appartenant à $M$ et nous noterons $T_M$ la fonction de premier retour qui lui est associée. Nous avons donc pour cette suite là $\tau_{t_{n+1}} \leq \tau_{t_{n}}(1-\frac{s_{t_n}}{s_{t_n+6}})$. \newline
+Or nous avons $s_{t_n+6} \leq 16 N(n+6)N(n+5)N(n+4)N(n+3)N(n+2)N(n+1)s_{t_n}$ et donc $0 \leq \frac{\tau_{t_{n+1}}}{\tau_{t_{n}}} \leq 1-\frac{1}{16 N(n+6)N(n+5)N(n+4)N(n+3)N(n+2)N(n+1)} \leq 1$. Nous noterons $f(x_1,x_2)=\log(1-\frac{1}{16 N(6)N(5)N(4)N(3)N(2)N(1)})$.
+D'après le théorème ergodique nous avons $\underset{n \to \infty}{lim}\frac{1}{n}\sum_{k \leq n}f(T_M^k(x_1,x_2)) \to \log(K1) <0$.Nous avons donc\[
+\tau_n \leq c K_1^{n}
+\]
+Or comme $\frac{t_n}{n} \to \frac{1}{\mu(M)}$, nous pouvons écrire pour $n$ suffisament grand\[
+\tau_n \leq c' K_1^{t_n}
+\]
+Puis pour $n$ suffisament grand\[
+\rho_n \leq c' K_1^n
+\]
+De même nous avons\[
 s_n \leq K_2^n
-$$
-
+\]
+avec $0<K_2$ Ce qui permet d'avoir \[
+\rho_n \leq \frac{1}{s_n^d}
+\]avec $0<d$.
 \end{document}

@@ -46,11 +46,13 @@ def execut(n):
         denominateur.append(max(M[0,1],1))
     #pl.scatter(xlist,ylist)
     print(M)
-    print(rho)
     print(denominateur)
+    #print(rho)
+    #print(denominateur)
+    #pl.plot(denominateur)
+    pl.plot(rho[100:])
 
-
-execut(50)
+execut(140)
 
 def calcul_matrice(jlist):
     for i in range(len(jlist)):
@@ -73,5 +75,4 @@ P=Mb[0:2,0:3:2]
 print(P)
 Mb[1,2]
 
-# TODO : calculer les mineurs de tailles deux
 # TODO : estimer les exposants de Lyoupanov
