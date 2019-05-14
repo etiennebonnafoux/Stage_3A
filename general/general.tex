@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper,left=2cm,right=2cm,top=2.5cm,bottom=2cm]{geometry}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{babel}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{color}
+\usepackage{dsfont}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{pifont}
+
+\theoremstyle{plain}% default
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{lem}[thm]{Lemme}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollaire}
+\theoremstyle{definition}
+\newtheorem{dfnt}{Définition}[section]
+\newtheorem{exmp}{Exemple}[section]
+\newtheorem{xca}[exmp]{Exercice}
+\theoremstyle{remark}
+\newtheorem*{rmq}{Remarque}
+\newtheorem*{note}{Note}
+\newtheorem{case}{Case}
+
+\crefname{thm}{théorème}{théorèmes}
+\crefname{lem}{lemme}{lemmes}
+\crefname{prop}{proposition}{propositions}
+\crefname{cor}{corollaire}{corollaires}
+\crefname{dfnt}{définition}{définitions}
+\crefname{exmp}{exemple}{exemples}
+\crefname{xca}{exercice}{exercices}
+\crefname{rmq}{remarque}{remarques}
+\crefname{note}{note}{notes}
+\crefname{case}{case}{cases}
+
+\newcommand{\ncref}[1]{\cref{#1} "\nameref{#1}"}
+\newcommand{\Ncref}[1]{\Cref{#1} \Nameref{#1}}
+
+\begin{document}
+Let define Markovian Continued Fraction (MCF) Algorithme. let $\Delta= \{ (1,\alpha,\beta) \in \mathbb{R}^3,0 \leq \beta \leq \alpha \leq 1 \}$. Let be $T : \Delta \to \Delta$ a piecewise continous map.\newline
+$$ k_n
+\begin{pmatrix} 1 \\ x_1^n \\ x_2^n \end{pmatrix}=
+A_n \begin{pmatrix} 1 \\ x_1^{n+1} \\ x_2^{n+1} \end{pmatrix}
+$$
+Then $K_n \begin{pmatrix} 1 \\x_1^0 \\ x_2^0 \end{pmatrix} = S_n \begin{pmatrix}{c} 1 \\ x_1^n \\ x_2^n \end{pmatrix}$\newline
+$S_n=A_1 A_2 ... A_n$ and $K_n=k_1 ... k_n$. We should name the coefficent of $S_n$:$$
+S_n=\begin{pmatrix}
+a_0^n & a_1^n & a_2^n \\
+b_0^n & b_1^n & b_2^n \\
+c_0^n & c_1^n & c_2^n
+\end{pmatrix}
+$$
+So we have
+$$
+\left \{
+\begin{array}{l}
+a_0^n+x_1^n a_1^n +x_2^n a_2^n=K_n\\
+b_0^n+x_1^n b_1^n +x_2^n b_2^n=K_n x_1^0
+\end{array}
+\right .
+$$
+Then $\frac{a_0^n+x_1^n a_1^n +x_2^n a_2^n}{b_0^n+x_1^n b_1^n +x_2^n b_2^n}=x_1^0$.\newline
+We can now control the convergence $| \frac{b_0^n}{a_0^n}-x_1^0 |= | \frac{a_0^n b_0^n+x_1^n a_1^n b_1^n +x_2^n a_2^n b_2^n-a_0^n b_0^n}{a_0^n(a_0^n+x_1^n a_1^n +x_2^n a_2^n)} | \leq \frac{1}{|a_o^n|^2}(x_1^n |a_1^n b_0^n - a_0^n b_1^n |+x_2^n |a_2^n b_0^n - a_0^n b_2^n |) \leq 2 \frac{\|S_n^{-1} \|}{\| S_n \|^2}$
+\section{Cas particulier}
+Nous considérons le cas où les matrices de transition sont de la forme $$
+A_k=\begin{pmatrix}
+\alpha_k & 1 & 0 \\
+\beta_k & 0 & 1 \\
+1 & 0 & 0
+\end{pmatrix}
+$$
+Alors son inverse est $$
+A_k^{-1}=\begin{pmatrix}
+0 & 0 & 1 \\
+1 & 0 & - \alpha_k \\
+0 & 1 & - \beta_k
+\end{pmatrix}
+$$
+Soit $\alpha_k$ et $\beta_k$ deux suites de variables aléatoires i.i.d. suivant deux lois différentes. Considérons les deux suites définies pas récurence $$
+\left \{
+\begin{array}{l}
+r_{n}=\alpha_n r_{n-1} + \beta_n r_{n-2} + r_{n-3}\\
+s_{n}= - \beta_n s_{n-1} - \alpha_n s_{n-2} + s_{n-3}
+\end{array}
+\right .
+$$
+Toute la question est de savoir si $s$ est négligeable devant $r$.
+\end{document}

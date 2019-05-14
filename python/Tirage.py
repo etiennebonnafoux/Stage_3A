@@ -21,13 +21,28 @@ def recurence(iter):
     N=liste_N(iter+5)
     for i in range(iter):
         Beta.append(-N[i]*Beta[-1]-Beta[-2]+Beta[-3])
-        Vect.append(Vect[-1]+N[i-1]*Vect[-2]+Vect[-3])
+        Vect.append(Vect[-1]+N[i]*Vect[-2]+Vect[-3])
     return(Beta,Vect)
+
+def signeliste(Listee):
+    T=[]
+    for a in Listee:
+        if a < 0 :
+            T.append(0)
+        else:
+            T.append(1)
+    return T
+
+B,V=recurence(200)
+
+print(B)
 
 def dessin(iter):
     Beta,Vect=recurence(iter)
-    pl.plot(Beta,color='red')
-    pl.plot(Vect,color='green')
+    T=[Beta[i]/Vect[i] for i in range(len(Beta))]
+    pl.plot(T)
+    #pl.plot(Beta,color='red')
+    #pl.plot(Vect,color='green')
     pl.show()
 
-dessin(100)
+dessin(20)
