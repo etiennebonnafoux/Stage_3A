@@ -51,7 +51,7 @@ $$ k_n
 \begin{pmatrix} 1 \\ x_1^n \\ x_2^n \end{pmatrix}=
 A_n \begin{pmatrix} 1 \\ x_1^{n+1} \\ x_2^{n+1} \end{pmatrix}
 $$
-Then $K_n \begin{pmatrix} 1 \\x_1^0 \\ x_2^0 \end{pmatrix} = S_n \begin{pmatrix}{c} 1 \\ x_1^n \\ x_2^n \end{pmatrix}$\newline
+Then $K_n \begin{pmatrix} 1 \\x_1^0 \\ x_2^0 \end{pmatrix} = S_n \begin{pmatrix} 1 \\ x_1^n \\ x_2^n \end{pmatrix}$\newline
 $S_n=A_1 A_2 ... A_n$ and $K_n=k_1 ... k_n$. We should name the coefficent of $S_n$:$$
 S_n=\begin{pmatrix}
 a_0^n & a_1^n & a_2^n \\
@@ -69,7 +69,8 @@ b_0^n+x_1^n b_1^n +x_2^n b_2^n=K_n x_1^0
 \right .
 $$
 Then $\frac{a_0^n+x_1^n a_1^n +x_2^n a_2^n}{b_0^n+x_1^n b_1^n +x_2^n b_2^n}=x_1^0$.\newline
-We can now control the convergence $| \frac{b_0^n}{a_0^n}-x_1^0 |= | \frac{a_0^n b_0^n+x_1^n a_1^n b_1^n +x_2^n a_2^n b_2^n-a_0^n b_0^n}{a_0^n(a_0^n+x_1^n a_1^n +x_2^n a_2^n)} | \leq \frac{1}{|a_o^n|^2}(x_1^n |a_1^n b_0^n - a_0^n b_1^n |+x_2^n |a_2^n b_0^n - a_0^n b_2^n |) \leq 2 \frac{\|S_n^{-1} \|}{\| S_n \|^2}$
+We can now control the convergence $| \frac{b_0^n}{a_0^n}-x_1^0 |= | \frac{a_0^n b_0^n+x_1^n a_1^n b_1^n +x_2^n a_2^n b_2^n-a_0^n b_0^n}{a_0^n(a_0^n+x_1^n a_1^n +x_2^n a_2^n)} | \leq \frac{1}{|a_o^n|^2}(x_1^n |a_1^n b_0^n - a_0^n b_1^n |+x_2^n |a_2^n b_0^n - a_0^n b_2^n |) \leq 2 \frac{\|S_n^{-1} \|}{\| S_n \|^2}$\newline
+So we have $\frac{\log{| \frac{b_0^n}{a_0^n}-x_1^0 |}}{n} \leq \frac{log{2}}{n}+\frac{\log {\|S_n^{-1}\|}}{n}-2\frac{\log{\|S_n\|}}{n}$ and taking the limit give $limsup \frac{\log{| \frac{b_0^n}{a_0^n}-x_1^0 |}}{n} \leq -\lambda_3-2\lambda_1=\lambda_2-\lambda_1 \leq 0 $ and the last inequalities is strict if and only if $\lambda_1 > \lambda_2$
 \section{Cas particulier}
 Nous considérons le cas où les matrices de transition sont de la forme $$
 A_k=\begin{pmatrix}
@@ -93,5 +94,43 @@ s_{n}= - \beta_n s_{n-1} - \alpha_n s_{n-2} + s_{n-3}
 \end{array}
 \right .
 $$
-Toute la question est de savoir si $s$ est négligeable devant $r$.
+Toute la question est de savoir si $s$ est négligeable devant $r$.\newline
+Donnons trois exemples de ces algorithmes.
+\subsection{Algorithme de Selmer}
+$x_1,x_2,x_3 \mapsto x_2,x_3,x_1- \left \lfloor \frac{x_1}{x_3} \right \rfloor x_3 $ de matrice: $$
+A_k=\begin{pmatrix}
+0 & 1 & 0 \\
+N_k & 0 & 1 \\
+1 & 0 & 0
+\end{pmatrix}
+$$
+Avec $N_k=\left \lfloor \frac{x_1}{x_3} \right \rfloor$
+\subsection{Algorithme des triangles}
+$x_1,x_2,x_3 \mapsto x_2,x_3,x_1- x_2 - \left \lfloor \frac{x_1-x_2}{x_3} \right \rfloor x_3 $ de matrice: $$
+A_k=\begin{pmatrix}
+1 & 1 & 0 \\
+N_k & 0 & 1 \\
+1 & 0 & 0
+\end{pmatrix}
+$$
+Avec $N_k\left \lfloor \frac{x_1-x_2}{x_3} \right \rfloor$
+\subsection{Troisième algorithme}
+$x_1,x_2,x_3 \mapsto x_2,x_3,x_1- \left \lfloor \frac{x_1}{x_2} \right \rfloor x_2 - \left \lfloor \frac{x_1-x_2 \left \lfloor \frac{x_1}{x_2} \right \rfloor}{x_3} \right \rfloor x_3 $ de matrice: $$
+A_k=\begin{pmatrix}
+L_k & 1 & 0 \\
+N_k & 0 & 1 \\
+1 & 0 & 0
+\end{pmatrix}
+$$
+Avec $L_K=\left \lfloor \frac{x_1}{x_2} \right \rfloor$ et $N_k=\left \lfloor \frac{x_1-x_2 \left \lfloor \frac{x_1}{x_2} \right \rfloor}{x_3} \right \rfloor$
+
+\section{Convergence géométrique}
+
+Soit $A_1^k,A_2^k,A_3^k$ les colonnes de la matrice $S_n$.
+Nous noterons $\overset{--}{.}$
+$:\mathbb{R}^3 \to {1}*\mathbb{R}^2$
+ l'opération de renormalisation du premier paramètre à 1. Nous avons toujours $\begin{pmatrix} 1 \\ x_1^0 \\ x_2^0 \end{pmatrix}$ dans le triangle
+ $\overset{--}{A_1^k},\overset{--}{A_2^k},\overset{--}{A_3^k}$
+ Nous noterons $D(U,V)=\|\frac{U}{\|U \|}- \frac{V}{\|V\|}\|$ et $d_k=\max(D(A_1^k,A_2^k),D(A_2^k,A_3^k),D(A_1^k),A_3^k)$. $d_k$ est une suite décroissante et minoré par $0$. Elle possède donc une limite dont il faut montrer la nullité.
+
 \end{document}
