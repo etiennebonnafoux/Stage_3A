@@ -213,8 +213,8 @@ We call $D(U,V)=\|\frac{U}{\|U \|}- \frac{V}{\|V\|}\|$ and $d_k=\max(D(A_1^k,A_2
 \[j_k=1
 \begin{array}{c c l}
 A_1^{k+1} & = & N A_1^k+A_2^k\\
-A_2^{k+1} & = & A_3^{k+1} + A_3^k \\
-A_3^{k+1} & = & A_1^{k+1} + A_1^k
+A_2^{k+1} & = & A_1^{k+1} + A_1^k \\
+A_3^{k+1} & = & A_2^{k+1} + A_3^k
 \end{array}
 \]
 
@@ -227,13 +227,12 @@ A_3^{k+1} & = & A_2^{k+1} + A_1^k
 \]
 
 \begin{lem}
-If $j_{k-1}=1$
-\[
-\|A_2^k \| \geq \|A_3^k\| \geq \|A_1^k \|
-\]
-If $j_{k-1}=2$
 \[
 \|A_3^k \| \geq \|A_2^k\| \geq \|A_1^k \|
+\]
+and if $j_k=2$
+\[
+\frac{A_2^{k+1}}{A_3^{k+1}} \geq \frac{1}{2}
 \]
 \end{lem}
 
@@ -241,28 +240,32 @@ If $j_{k-1}=2$
  $D(U,V+b U)=\frac{\|V\|}{\|V+b U\|}D(U,V)$
 \end{lem}
 \begin{lem}
-If $j_k=2$ and $j_{k-1}=1$ then $d_{k+1} \leq \frac{2}{3} d_k$
+If $j_k=2$ and $j_{k-1}=2$ then $d_{k+1} \leq \frac{2}{3} d_k$
 \end{lem}
-\[
-\begin{array}{c c l}
-D(A_1^{k+1},D(A_3^{k+1})) & = & D(N A_1^k + A_2^k,A_2^{k+1}+A_1^k)\\
- & = & D(N A_1^k + A_2^k,(N+1)a_1^k+A_2^k+A_3^k) \\
- & = & \frac{\|A_1^k+A_3^k\|}{\|(N+1)A_1^k+A_2^k+A_3^k\|}D(NA_1^k+A_2^k,A_1^k+A_3^k)\\
- & \leq & \frac{\|A_1^k+A_3^k\|}{\|A_1^k+A_2^k+A_3^k\|} d
-\end{array}
-\]
-Yet we have $\frac{N \|A_1^k\|+\|A_2^k\|}{\|A_1^k+A_3^k\|} \geq \frac{\|A_2^k\|}{\|A_1^k+A_3^k\|} \geq \frac{1}{2}$ so \[
-D(A_1^{k+1},D(A_3^{k+1})) \leq \frac{2}{3} d_k
-\]
+\begin{proof}
+
 \[
 \begin{array}{c c l}
 D(A_1^{k+1},A_2^{k+1}) & = & D(A_1^{k+1},A_1^{k+1}+A_3^k) \\
 & = & \frac{\|A_3^k\|}{\|A_3^k+A_1^{k+1}\|}D(A_1^{k+1},A_3^k)\\
 & \leq & \frac{\|A_3^k\|}{\|A_3^k+N A_1^k+A_2^k\|}D(A_1^{k+1},A_3^k)\\
 & \leq & \frac{1}{1+\frac{\|A_2^k\|}{\|A_3^k\|}} d\\
-& \leq & \frac{1}{2} d_k
+& \leq & \frac{2}{3} d_k
 \end{array}
 \]
+
+\[
+\begin{array}{c c l}
+D(A_1^{k+1},A_3^{k+1}) & = & D(A_1^{k+1},A_1^{k+1}+A_1^k+A_3^k)\\
+ & = & \frac{\|A_1^k+A_3^k\|}{\|A_1^{k+1}+A_1^k+A_3^k\|}  D(A_1^{k+1},A_1^k+A_3^k) \\
+\end{array}
+\]
+Yet we have \[
+\frac{\|A_1^k+A_3^k\|}{\|A_1^{k+1}+A_1^k+A_3^k\|} \leq \frac{\|A_1^k+A_3^k\|}{\|A_2^k+A_1^k+A_3^k\|} \leq
+\frac{2}{3}
+\]
+
+
 \[
 \begin{array}{c c l}
 D(A_2^{k+1},A_3^{k+1}) & = & D(A_2^{k+1},A_2^{k+1}+A_1^k) \\
@@ -270,4 +273,5 @@ D(A_2^{k+1},A_3^{k+1}) & = & D(A_2^{k+1},A_2^{k+1}+A_1^k) \\
 & \leq & \frac{1}{2} d_k
 \end{array}
 \]
+\end{proof}
 \end{document}

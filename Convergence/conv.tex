@@ -1,0 +1,143 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper,left=2cm,right=2cm,top=2.5cm,bottom=2cm]{geometry}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{babel}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{color}
+\usepackage{dsfont}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{pifont}
+
+\theoremstyle{plain}% default
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{lem}[thm]{Lemme}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollaire}
+\theoremstyle{definition}
+\newtheorem{dfnt}{Définition}[section]
+\newtheorem{exmp}{Exemple}[section]
+\newtheorem{xca}[exmp]{Exercice}
+\theoremstyle{remark}
+\newtheorem*{rmq}{Remarque}
+\newtheorem*{note}{Note}
+\newtheorem{case}{Case}
+
+\crefname{thm}{théorème}{théorèmes}
+\crefname{lem}{lemme}{lemmes}
+\crefname{prop}{proposition}{propositions}
+\crefname{cor}{corollaire}{corollaires}
+\crefname{dfnt}{definition}{definitions}
+\crefname{exmp}{exemple}{exemples}
+\crefname{xca}{exercice}{exercices}
+\crefname{rmq}{remarque}{remarques}
+\crefname{note}{note}{notes}
+\crefname{case}{case}{cases}
+
+\newcommand{\ncref}[1]{\cref{#1} "\nameref{#1}"}
+\newcommand{\Ncref}[1]{\Cref{#1} \Nameref{#1}}
+
+% TODO ajouter les opérateurs markoviens
+\begin{document}
+Supposons que l'on n'a déjà montrer la convergence faible d'un algorithme.
+L'existence d'une mesure invariante et suffisament régulière est aussi primordiale.
+Le système doit bien sûre être mélangeant.
+Pour qu'un algorithme converge il faut que son opérateur markovien associé à l'extension au drapeau satisfasse les hypothèses du théorème specrtal de Ionescu-Tulcea et Marinesca.
+De là nous pouvons en déduire la régularité de la solution de l'équation cohomologique.
+Sous couvert de régularité de $f$ et de la nullité de son intégral nous avons donc égalité par tout. Il faut ensuite montrer l'existence d'un point fixe pour la transformation étendu au drapeau.
+Puis il faut montrer que la valeur de $f$ en ce point fixe ne peut être nul ce qui amène une contradiction.
+\section{Definition}
+Let $\Delta=\{ 1 \geq x_1 \geq x_2 \geq 0 \}$ and $T:\Delta \to \Delta$ with \[ T(x_1,x_2)=(\frac{p_0+p_1 x_1+p_2 x_2}{q_0+q_1 x_1 +q_2 x_2},\frac{r_0+r_1 x_1+r_2 x_2}{q_0+q_1 x_1 +q_2 x_2}) \] with $(p_i,r_i,q_i)_{i=1,2,3}\in \mathbb{N}^9$ be piecewide constant function.It is natural to associate with$T $ the matrix $M=\begin{pmatrix} q_0 & q_1 & q_2 \\ p_0 & p_1 & p_2 \\ r_0 & r_1 & r_2 \end{pmatrix}$
+If $\tau: \Delta \to \mathbb{R}**3, (x_1,x_2) \mapsto (1,x_1,x_2)$ and $\overset{-}{.} \mathbb{R^+}^3 \to \Delta,(x_0,x_1,x_2) \mapsto (\frac{x_1}{x_0},\frac{x_2}{x_0})$
+Then $T=\overset{-}{.} \circ M \circ \tau$\newline.
+Let $a$ be the locally inverse of $T$, $a:T(\Delta_a) \to \Delta_a$. Then we call $\omega_n=a_n a_{n-1} ... a_0$
+\section{Extension of the algorithm at the flag}
+We need to extend our definition to the flag. Let $\tilde{\Delta}=\Delta*\mathbb{P}^1$ be the set of point in $\Delta$ with a direction. We define a distance on this set by \[
+\zeta=(x,u),\zeta'=(x',u'),d(\zeta,\zeta')=\delta(x,x')+\partial (u,u')
+\]
+with $\delta$ the euclidean distance and $\partial$ the absolute value between the sinus of the two angles.
+One can show that it is indeed a distance on $\tilde{Delta}$\newline
+We extend now the action of $T$ and $a$ in $\tilde{T}$ and $\tilde{a}$ with\[
+\tilde{T}(x,u)=(Tx,T'_x u)
+\]
+We do the same with $a$.
+
+\section{Creation of an invariante mesure}
+We suppose that there is an invariant for $T$, ergodic mesure $\pi$ on $\Delta$ and that the system is mixing. Again we should extend this mesure to $\tilde{\pi}$ on $\tilde{\Delta}$.\newline
+Let's recall the Oseledets Theorem
+\begin{thm}
+For all $x\in \Delta$ there are three vector $e^1_x,e^2_x,e^3_x$ such that \[
+\begin{matrix}
+1)(e^1_x,e^2_x,e^3_x)\text{is a continuous function in } \mathbb{R} \\
+2)e^i_{Tx}=Be^i_{Tx} \\
+3)\text{if }v=ae^1_x+be^2_x+ce^3_x\\
+lim \frac{1}{n}log \|S_n^{-1}(x)v\|=
+\left \{ \begin{matrix}
+\lambda_1,c \ne 0\\
+\lambda_2,c=0,b \ne 0 \\
+\lambda_3,c=b=0,a\ne 0
+\end{matrix}
+\right .
+\end{matrix}
+\]
+\end{thm}
+Let $\zeta(x)$ be the contractil flag of the dynamic in $x$\newline
+Then we can show that
+\begin{thm}
+Let $\mu$ be a probability on $\Delta$ with a support different of $p \cup \Delta$. Then for $\pi$ almost every $x$ $\zeta(x)$ is a atom of the sequence of mesure $S_n(x)\mu$
+\end{thm}
+\begin{dfnt}
+$\tilde{\pi}(f)=\int_X f(\zeta_x) d \pi(x)$
+\end{dfnt}
+\begin{thm} % NB on a besoin que le system soit melangeant
+$\tilde{\pi}$ is invariant by $\tilde{T}$, $\tilde{P}$ is the adjoint operator of $\tilde{T}$ on $\Delta$ with respect to $\tilde{\pi}$. $(\Delta,B_\Delta,\tilde{T},\tilde{\pi})$ is a mixing system.
+\end{thm}
+
+\section{Cohomologic equation}
+\begin{thm}
+Let $f \in L^1(\Delta)$, if there is $c>0$ such that $\forall n$ $|\sum_{k \leq n}f \circ T^k|\leq c$ almost everywhere and $\pi(f)=0$ then there is $g$ such that \[
+f=g-g \circ T \ p.p.
+\]
+\end{thm}
+We want to make this theorem more precise and we will need that the equallity above is true everywhere. To do so we should show a $g$ has a certain regularity. So we want to show this theorem
+\begin{thm}
+Let $f \in L^1_\pi(\Delta)$ be a real function such that \[
+\begin{matrix}
+1)\tilde{\pi}(f)=0 \\
+2)\tilde{P}f \in H_\epsilon(\Delta)\\
+3)\exists c \geq 0,\forall n \ for\ almost\ every\ \zeta \ \sum_{k \leq n}f \circ T^k(\zeta)\leq c
+\end{matrix}
+\]then there exists a unique $g \in H_\epsilon(\Delta)$ such that\[\begin{matrix}
+1)\tilde{\pi}(g)=0 \\
+2)f=g-g\circ T \ p.p. \\
+3)\tilde{P}f=\tilde{P}g-g
+\end{matrix}
+\]
+\end{thm}
+\section{End of demonstration}
+
+\begin{dfnt}
+Let $\alpha (g,\zeta)=\frac{\| g'_x u\|**3}{|det g'_x|}$, it is a cocycle, $\alpha(g g', \zeta)=\alpha(g,g' \zeta) \alpha(g',\zeta)$.
+\end{dfnt}
+
+\begin{thm}
+$\underset{n}{lim} \frac{1}{3n} log \alpha(\omega_n,\tilde{T}^n \zeta_x)=\lambda_2=0$
+\end{thm}
+
+\begin{dfnt}
+Let $f(\zeta)=\frac{1}{3} log \alpha (a^x, \tilde{T} \zeta)$
+\end{dfnt}
+
+\begin{thm}
+$\tilde{\pi}(f)=0=\lambda_2$
+\end{thm}
+
+\end{document}
