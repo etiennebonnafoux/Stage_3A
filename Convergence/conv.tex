@@ -1,3 +1,4 @@
+%TODO Faire le plan et la bilbiographie
 \documentclass[12pt]{article}
 
 \usepackage[utf8]{inputenc}
@@ -31,7 +32,7 @@
 \newtheorem*{note}{Note}
 \newtheorem{case}{Case}
 
-\crefname{thm}{théorème}{théorèmes}
+\crefname{thm}{theorem}{theorems}
 \crefname{lem}{lemme}{lemmes}
 \crefname{prop}{proposition}{propositions}
 \crefname{cor}{corollaire}{corollaires}
@@ -47,6 +48,8 @@
 
 % TODO ajouter les opérateurs markoviens
 \begin{document}
+\tableofcontents
+\section*{Introduction}
 Supposons que l'on n'a déjà montrer la convergence faible d'un algorithme.
 L'existence d'une mesure invariante et suffisament régulière est aussi primordiale.
 Le système doit bien sûre être mélangeant.
@@ -55,26 +58,58 @@ De là nous pouvons en déduire la régularité de la solution de l'équation co
 Sous couvert de régularité de $f$ et de la nullité de son intégral nous avons donc égalité par tout. Il faut ensuite montrer l'existence d'un point fixe pour la transformation étendu au drapeau.
 Puis il faut montrer que la valeur de $f$ en ce point fixe ne peut être nul ce qui amène une contradiction.
 \section{Definition}
-Let $\Delta=\{ 1 \geq x_1 \geq x_2 \geq 0 \}$ and $T:\Delta \to \Delta$ with \[ T(x_1,x_2)=(\frac{p_0+p_1 x_1+p_2 x_2}{q_0+q_1 x_1 +q_2 x_2},\frac{r_0+r_1 x_1+r_2 x_2}{q_0+q_1 x_1 +q_2 x_2}) \] with $(p_i,r_i,q_i)_{i=1,2,3}\in \mathbb{N}^9$ be piecewide constant function.It is natural to associate with$T $ the matrix $M=\begin{pmatrix} q_0 & q_1 & q_2 \\ p_0 & p_1 & p_2 \\ r_0 & r_1 & r_2 \end{pmatrix}$
-If $\tau: \Delta \to \mathbb{R}**3, (x_1,x_2) \mapsto (1,x_1,x_2)$ and $\overset{-}{.} \mathbb{R^+}^3 \to \Delta,(x_0,x_1,x_2) \mapsto (\frac{x_1}{x_0},\frac{x_2}{x_0})$
-Then $T=\overset{-}{.} \circ M \circ \tau$\newline.
-Let $a$ be the locally inverse of $T$, $a:T(\Delta_a) \to \Delta_a$. Then we call $\omega_n=a_n a_{n-1} ... a_0$
+Let $\Delta=\{ 1 \geq x_1 \geq x_2 \geq 0 \}$ and $T:\Delta \to \Delta$ with \[ T(x_1,x_2)=(\frac{p_0+p_1 x_1+p_2 x_2}{q_0+q_1 x_1 +q_2 x_2},\frac{r_0+r_1 x_1+r_2 x_2}{q_0+q_1 x_1 +q_2 x_2}) \] with $(p_i,r_i,q_i)_{i=1,2,3}\in \mathbb{N}^9$ be piecewide constant function.Each piece is call $\Delta_a$. It is natural to associate with$T $ the matrix $M=\begin{pmatrix} q_0 & q_1 & q_2 \\ p_0 & p_1 & p_2 \\ r_0 & r_1 & r_2 \end{pmatrix}$ with $det(M)=1$ and $M^{-1}=\begin{pmatrix} a_0 & b_0 & c_0 \\ a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \end{pmatrix}$
+If $\tau: \Delta \to \mathbb{R}^3, (x_1,x_2) \mapsto (1,x_1,x_2)$ and $\overset{-}{.}: \mathbb{R^+}^3 \to \Delta,(x_0,x_1,x_2) \mapsto (\frac{x_1}{x_0},\frac{x_2}{x_0})$
+Then $T=\overset{-}{.} \circ M \circ \tau$.\newline
+Let $a$ be the locally inverse of $T$, $a:T(\Delta_a) \to \Delta_a$. Then we call $\omega_n=a_n a_{n-1} ... a_0$.\newline
+We have $x=\omega_n T^n(x)$.
+\newline
+\color{green}
+We suppose that this dynamic is mixing and admit an invariant mesure $\pi$ which is regular according to the Lesbegue mesure in the following sence: there is a function $h$, analytic on the $\Delta_a$ such that $h \pi= Leb$
+\color{black}
+\subsection{Markovian operator}
+We now define the adjoint operator $P$ of $T$ on $L^1_{\pi}(\Delta)$ by \[
+Pf(x)=\sum_{a} f(a x)\frac{h(a.x)}{h(x)}(Jac(T)_x)^{-1} \mathbf{1} _{T(\Delta_a)}(x)
+\]
+With $Jac(T)_x$ the jacobian of $T$\newline
+To abbreviate the notation we will write $p(x,a)=\frac{h(a.x)}{h(x)}(Jac(T(x)))^{-1} \mathbf{1}_{T(\Delta_a)}(x)$\newline
+We have $P1=1$
+
 \section{Extension of the algorithm at the flag}
 We need to extend our definition to the flag. Let $\tilde{\Delta}=\Delta*\mathbb{P}^1$ be the set of point in $\Delta$ with a direction. We define a distance on this set by \[
 \zeta=(x,u),\zeta'=(x',u'),d(\zeta,\zeta')=\delta(x,x')+\partial (u,u')
 \]
 with $\delta$ the euclidean distance and $\partial$ the absolute value between the sinus of the two angles.
-One can show that it is indeed a distance on $\tilde{Delta}$\newline
+One can show that it is indeed a distance on $\tilde{\Delta}$\newline
 We extend now the action of $T$ and $a$ in $\tilde{T}$ and $\tilde{a}$ with\[
 \tilde{T}(x,u)=(Tx,T'_x u)
 \]
+We can compute \[
+T'_x=(\frac{1}{q_0+q_1 x_1 + q_2 x_2})^2 \begin{pmatrix}
+(p_1 q_0 - p_0 q_1)+(p_1 q_2-q_1 p_2)x_2 & (p_2 q_0-q_2 p_0)+(p_2 q_1 -q_2 p_1) x_1 \\
+(r_1 q_0 - r_0 q_1)+(r_1 q_2-q_1 r_2)x_2 & (r_2 q_0-q_2 r_0)+(r_2 q_1 -q_2 r_1) x_1 \\
+\end{pmatrix}
+\]
+Or \[
+T'_x = (\frac{1}{q_0+q_1 x_1 + q_2 x_2})^2 \begin{pmatrix}
+c_2-c_0 x_2 & -c_1+c_0 x_1 \\
+-b_2+b_0 x_2 & b_1 - b_0 x_1 \\
+\end{pmatrix}
+\]
 We do the same with $a$.
+\subsection{Markovian operator}
+We also extend $P$ in $\tilde{P}$ by \[
+\tilde{P}f(\zeta)=\sum_a f(a \zeta) p(x,a)
+\]
 
 \section{Creation of an invariante mesure}
-We suppose that there is an invariant for $T$, ergodic mesure $\pi$ on $\Delta$ and that the system is mixing. Again we should extend this mesure to $\tilde{\pi}$ on $\tilde{\Delta}$.\newline
+We supposed that there is an invariant for $T$, ergodic mesure $\pi$ on $\Delta$ and that the system is mixing %TODO donner des exemples de papiers où c'est donner
+. Again we should extend this mesure to $\tilde{\pi}$ on $\tilde{\Delta}$.\newline
+\subsection{Oseledets Theorem}
 Let's recall the Oseledets Theorem
+% TODO : parler d'extension naturel
 \begin{thm}
-For all $x\in \Delta$ there are three vector $e^1_x,e^2_x,e^3_x$ such that \[
+There is $B \subset \Delta$ with $\pi(B)=1$ and $T^{-1}(B) \subset B$ such as for  $x\in B$ there are three vector $e^1_x,e^2_x,e^3_x$ of $\mathbb{R}^3$ such that \[
 \begin{matrix}
 1)(e^1_x,e^2_x,e^3_x)\text{is a continuous function in } \mathbb{R} \\
 2)e^i_{Tx}=Be^i_{Tx} \\
@@ -89,17 +124,35 @@ lim \frac{1}{n}log \|S_n^{-1}(x)v\|=
 \end{matrix}
 \]
 \end{thm}
+\subsection{Invariant mesure}
 Let $\zeta(x)$ be the contractil flag of the dynamic in $x$\newline
 Then we can show that
 \begin{thm}
 Let $\mu$ be a probability on $\Delta$ with a support different of $p \cup \Delta$. Then for $\pi$ almost every $x$ $\zeta(x)$ is a atom of the sequence of mesure $S_n(x)\mu$
 \end{thm}
+\begin{proof}
+Let $S_n^{-1}(x)=K_n D_n K_n'$ be the Cartan decomposition of the matrix $S_n^{-1}(x)$, we know that \[
+((S_n^{-1}(x))^{t}
+ S_n^{-1}(x))^{\frac{1}{2n}} =
+ K_n^{-1'}
+ D_n^{\frac{1}{2n}}
+ K_n'
+\]
+converge $\pi$ almost surely to a symetric matrix with eigenvalues $e^{\lambda_1},e^{\lambda_2},e^{\lambda_3}$. Moreover $lim_n K'_n D_n^{\frac{1}{2n}} K_n'=k'^{-1}D K'$, $D$ is diagonal and the base $K' e_i$ is normal.
+\end{proof}
 \begin{dfnt}
 $\tilde{\pi}(f)=\int_X f(\zeta_x) d \pi(x)$
 \end{dfnt}
+
 \begin{thm} % NB on a besoin que le system soit melangeant
 $\tilde{\pi}$ is invariant by $\tilde{T}$, $\tilde{P}$ is the adjoint operator of $\tilde{T}$ on $\Delta$ with respect to $\tilde{\pi}$. $(\Delta,B_\Delta,\tilde{T},\tilde{\pi})$ is a mixing system.
 \end{thm}
+
+\begin{proof}
+If $f$ is in  $L_1(\tilde{\Delta})$, then the function $\phi(x)=f(\zeta_x)$ is in $L_1(\Delta)$ and we have $\tilde{\pi}(f) = \pi (\phi)$.
+\newline
+Then we have $\tilde{T} \zeta_x = \zeta_{\tilde{T}x}$ and $\pi$ is invariant by $T$, $P$ is the adjoint of $T$ on $\Delta$ with respect to $\pi$ and $(\Delta, B, T, \pi)$ is mixing.
+\end{proof}
 
 \section{Cohomologic equation}
 \begin{thm}
@@ -122,6 +175,53 @@ Let $f \in L^1_\pi(\Delta)$ be a real function such that \[
 \end{matrix}
 \]
 \end{thm}
+To do so we should first show a contraction equation;
+\subsection{Contraction of the operator $\tilde{P}$ }
+\begin{dfnt}
+If $\epsilon$ is a real strictly positiv number, let $[f]_\epsilon= sup \frac{|f(\zeta)-f(\zeta ')|}{|d(\zeta,\zeta ')|^\epsilon}$ \newline
+We call $H_\epsilon(\Delta)$ the set of function $f$ with $[f]_\epsilon < \infty$
+\end{dfnt}
+We also define the norm $\| f \|=sup |f(\zeta)|$
+\begin{thm}
+There is a $n >0$ and $\epsilon \in ]0;1[$ and two constant
+ $0 \leq \alpha < 1$ and $\beta \geq 0$ such that for all $f\in H_\epsilon(\Delta)$
+ we have \[
+[\tilde{P}^n f]_\epsilon \leq \alpha [f]_\epsilon +\beta \| f \|
+ \]
+ \end{thm}
+ \begin{proof}
+ We fix $\epsilon \in ]0;1[$, $n$ a natural number and $f\in H_\epsilon(\Delta)$. Let's pick a couple of flag $(\zeta, \zeta' )= ((x,u),(x',u'))$ in the same triangle. We have \[
+\begin{aligned}
+\frac{\tilde{P}^n f(\zeta)-\tilde{P}^n f(\zeta')}{d(\zeta,\zeta')^\epsilon} & =& \sum_{\omega_n} \frac{|f(\omega_n \zeta)p(x,\omega_n)-f(\omega_n \zeta ')p(x',\omega_n)|}{d(\zeta,\zeta')^\epsilon} \\
+&\leq & [f]_\epsilon \sum_{\omega_n} (\frac{d(\omega_n \zeta, \omega_n \zeta')}{d(\zeta,\zeta')})^\epsilon p(x,\omega_n) + \| f \| \sum_{\omega_n} \frac{|p(x,\omega_n)-p(x',\omega_n)|}{d(\zeta,\zeta')^\epsilon}
+\end{aligned}
+ \]
+ We should know with the two terms. For the second one
+ \end{proof}
+\subsection{Proof of the cohomologic equation}
+\begin{proof}
+As for every $f$ in $H_\epsilon(\Delta)$ we have: \[
+[\tilde{P}^n f]_\epsilon \leq \alpha [f]_\epsilon +\beta \| f \|
+\]
+The theorem of Ionescu-Tulcea and Marinescu \cite{ITM} give the spectral decomposition of the operator $\tilde{P}$ in $H_\epsilon(\Delta)$: there is a finites number of eighenvalue of module $1$ who have finite multiplicity and the other part of the spectra is of module strictly less than $1$. We can also write: \[
+\tilde{P^n}f=\sum_{i=1}^p \lambda_i \tilde{P_i}f + \tilde{R}f
+\]
+where $\lambda_i$ are the eighenvalue with module $1$, $\tilde{P_i}$ are the projection on the eighen spaces who have finite dimension and $\tilde{R}$ is a linear operator of $H_\epsilon(\Delta)$ with spectral radius $r<1$ (according to the ITM theorem).\newline
+As the dynamical system $(\Delta,B_\Delta,\tilde{T,\tilde{\pi}})$ is mixing and $\tilde{P}$ is the adjoint of $\tilde{T}$ according to $\tilde{\pi}$ we can conclude that $1$ is the unique eigen value of module $1$ of $\tilde{P}$ and it is simple. So for every function $f$ in $H_\epsilon(\Delta)$, we can write:\[
+\tilde{P^n}f=\tilde{\pi}(f)+\tilde{R}f
+\]
+with $\| \tilde{R^m}f\| \leq r^m \|f\|$\newline
+So if we got two solution $g$ and $h$ of $\tilde{P}f=\tilde{P}g-g$ with $\tilde{pi}(g)=\tilde{\pi}(h)=0$ we have: \[
+\tilde{P}(g-h)=(g-h)
+\]
+So $g-h$ is constant and therefor nul.\newline
+Let $f$ be a function suct that $\tilde{P}f$ is in $H_\epsilon(\Delta)$ and is integral is zero, we can find asolution of the equation:\[
+\tilde{P}f=\tilde{P}g-g
+\]
+Indeed the solution should be $g=-\sum_{k=2}^{\infty} \tilde{P^k}f$, we have to prove that $g\in H_\epsilon(\Delta)$.\newline
+As $\tilde{\pi}(f)=0$ we have $\tilde{P^n}f=\tilde{R}f$
+\end{proof}
+
 \section{End of demonstration}
 
 \begin{dfnt}
@@ -153,8 +253,8 @@ By the ergodique theorem we have \[
 \frac{1}{n} \sum_{k=0}^n f \circ T^k (\zeta) \to \tilde{\pi}(f)
 \]
 And we also have \[\begin{aligned}
-\frac{1}{n} \sum_{k=0}^n f \circ T^k (\zeta) & = & \frac{1}{3n} sum_{k=0}^{n-1} log \frac{ \| (a_{T^k x})' \tilde{T^{k+1}} \zeta \| }{| det a_x'|}\\
- &=& \frac{1}{3n} log \prod_{k=0}^{n-1} log \frac{ \| (a_{T^k x})' \tilde{T^{k+1}} \zeta \| }{| det a_x'|} \\
+\frac{1}{n} \sum_{k=0}^n f \circ T^k (\zeta) & = & \frac{1}{3n} \sum_{k=0}^{n-1} log \frac{ \| (a_{T^k x})' \tilde{T^{k+1}} \zeta \| }{| det a_x'|}\\
+ &=& \frac{1}{3n} log \prod_{k=0}^{n-1} \frac{ \| (a_{T^k x})' \tilde{T^{k+1}} \zeta \| }{| det a_x'|} \\
  &=&  \frac{1}{3n} log \alpha(\omega_n,\tilde{T}^n \zeta_x)
 \end{aligned}
 \]

@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[a4paper,left=2cm,right=2cm,top=2.5cm,bottom=2cm]{geometry}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{babel}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{color}
+\usepackage{dsfont}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{pifont}
+
+\theoremstyle{plain}% default
+\newtheorem{thm}{Théorème}[section]
+\newtheorem{lem}[thm]{Lemme}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem*{cor}{Corollaire}
+\theoremstyle{definition}
+\newtheorem{dfnt}{Définition}[section]
+\newtheorem{exmp}{Exemple}[section]
+\newtheorem{xca}[exmp]{Exercice}
+\theoremstyle{remark}
+\newtheorem*{rmq}{Remarque}
+\newtheorem*{note}{Note}
+\newtheorem{case}{Case}
+
+\crefname{thm}{theorem}{theorems}
+\crefname{lem}{lemme}{lemmes}
+\crefname{prop}{proposition}{propositions}
+\crefname{cor}{corollaire}{corollaires}
+\crefname{dfnt}{definition}{definitions}
+\crefname{exmp}{exemple}{exemples}
+\crefname{xca}{exercice}{exercices}
+\crefname{rmq}{remarque}{remarques}
+\crefname{note}{note}{notes}
+\crefname{case}{case}{cases}
+
+\newcommand{\ncref}[1]{\cref{#1} "\nameref{#1}"}
+\newcommand{\Ncref}[1]{\Cref{#1} \Nameref{#1}}
+
+%\title{Rapport de stage}
+%\subtitle{Probespoke}
+%\author{Etienne Bonnafoux}
+%\date{De juin à août 2018}
+
+\begin{document}
+%\maketitle
+\tableofcontents
+
+\section{Introduction}
+\section{Motivation}
+\input{motivation.tex}
+\section{Definition}
+\section{Extension naturelle et mesure invariante}
+\section{Convergence simple de l'algorithme}
+\section{Convergence forte de l'algorithme}
+
+\bibliographystyle{plain}
+\bibliography{biblio.bib}
+\end{document}
