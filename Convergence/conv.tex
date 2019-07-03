@@ -58,10 +58,10 @@ De là nous pouvons en déduire la régularité de la solution de l'équation co
 Sous couvert de régularité de $f$ et de la nullité de son intégral nous avons donc égalité par tout. Il faut ensuite montrer l'existence d'un point fixe pour la transformation étendu au drapeau.
 Puis il faut montrer que la valeur de $f$ en ce point fixe ne peut être nul ce qui amène une contradiction.
 \section{Definition}
-Let $\Delta=\{ 1 \geq x_1 \geq x_2 \geq 0 \}$ and $T:\Delta \to \Delta$ with \[ T(x_1,x_2)=(\frac{p_0+p_1 x_1+p_2 x_2}{q_0+q_1 x_1 +q_2 x_2},\frac{r_0+r_1 x_1+r_2 x_2}{q_0+q_1 x_1 +q_2 x_2}) \] with $(p_i,r_i,q_i)_{i=1,2,3}\in \mathbb{N}^9$ be piecewide constant function.Each piece is call $\Delta_a$. It is natural to associate with$T $ the matrix $M=\begin{pmatrix} q_0 & q_1 & q_2 \\ p_0 & p_1 & p_2 \\ r_0 & r_1 & r_2 \end{pmatrix}$ with $det(M)=1$ and $M^{-1}=\begin{pmatrix} a_0 & b_0 & c_0 \\ a_1 & b_1 & c_1 \\ a_2 & b_2 & c_2 \end{pmatrix}$
+Let $\Delta=\{ 1 \geq x_1 \geq x_2 \geq 0 \}$ and $T:\Delta \to \Delta$ with \[ T(x_1,x_2)=(\frac{p_0+p_1 x_1+p_2 x_2}{q_0+q_1 x_1 +q_2 x_2},\frac{r_0+r_1 x_1+r_2 x_2}{q_0+q_1 x_1 +q_2 x_2}) \] with $(p_i,r_i,q_i)_{i=1,2,3}\in \mathbb{N}^9$ be piecewide constant function.Each piece is call $\Delta_a$. It is natural to associate with$T $ the matrix $M=\begin{pmatrix} q_0 & q_1 & q_2 \\ p_0 & p_1 & p_2 \\ r_0 & r_1 & r_2 \end{pmatrix}$ with $det(M)=1$ and $M^{-1}=\begin{pmatrix} a_0 & a_1 & a_2 \\ b_0 & b_1 & b_2 \\ c_0 & c_1 & c_2 \end{pmatrix}$
 If $\tau: \Delta \to \mathbb{R}^3, (x_1,x_2) \mapsto (1,x_1,x_2)$ and $\overset{-}{.}: \mathbb{R^+}^3 \to \Delta,(x_0,x_1,x_2) \mapsto (\frac{x_1}{x_0},\frac{x_2}{x_0})$
 Then $T=\overset{-}{.} \circ M \circ \tau$.\newline
-Let $a$ be the locally inverse of $T$, $a:T(\Delta_a) \to \Delta_a$. Then we call $\omega_n=a_n a_{n-1} ... a_0$.\newline
+Let $a$ be the locally inverse of $T$, $a:T(\Delta_a) \to \Delta_a$. We have $a(x_1,x_2)=(\frac{b_0+b_1 x_1 + b_2 x_2}{a_0 + a_1 x_1 + a_2 x_2},\frac{c_0 + c_1 x_1 + c_2 x_2}{a_0 + a_1 x_1 + a_2 x_2})$. Then we call $\omega_n=a_n a_{n-1} ... a_0$.\newline
 We have $x=\omega_n T^n(x)$.
 \newline
 \color{green}
@@ -73,6 +73,7 @@ Pf(x)=\sum_{a} f(a x)\frac{h(a.x)}{h(x)}(Jac(T)_x)^{-1} \mathbf{1} _{T(\Delta_a)
 \]
 With $Jac(T)_x$ the jacobian of $T$\newline
 To abbreviate the notation we will write $p(x,a)=\frac{h(a.x)}{h(x)}(Jac(T(x)))^{-1} \mathbf{1}_{T(\Delta_a)}(x)$\newline
+We should also define $\phi(x,a)=(Jac(T(x)))^{-1} \mathbf{1}_{T(\Delta_a)}(x)$ that we will use after. \newline
 We have $P1=1$
 
 \section{Extension of the algorithm at the flag}
@@ -92,15 +93,17 @@ T'_x=(\frac{1}{q_0+q_1 x_1 + q_2 x_2})^2 \begin{pmatrix}
 \]
 Or \[
 T'_x = (\frac{1}{q_0+q_1 x_1 + q_2 x_2})^2 \begin{pmatrix}
-c_2-c_0 x_2 & -c_1+c_0 x_1 \\
--b_2+b_0 x_2 & b_1 - b_0 x_1 \\
+c_2-a_2 x_2 & -b_2+a_2 x_1 \\
+-c_1+a_1 x_2 & b_1 - a_1 x_1 \\
 \end{pmatrix}
 \]
+Then we have $det(T_x')= (q_0+q_1 x_1 + q_2 x_2)^{-3}$ \newline
 We do the same with $a$.
 \subsection{Markovian operator}
 We also extend $P$ in $\tilde{P}$ by \[
 \tilde{P}f(\zeta)=\sum_a f(a \zeta) p(x,a)
 \]
+With $a$ going on all allowed transformation.
 
 \section{Creation of an invariante mesure}
 We supposed that there is an invariant for $T$, ergodic mesure $\pi$ on $\Delta$ and that the system is mixing %TODO donner des exemples de papiers où c'est donner
@@ -178,7 +181,7 @@ Let $f \in L^1_\pi(\Delta)$ be a real function such that \[
 To do so we should first show a contraction equation;
 \subsection{Contraction of the operator $\tilde{P}$ }
 \begin{dfnt}
-If $\epsilon$ is a real strictly positiv number, let $[f]_\epsilon= sup \frac{|f(\zeta)-f(\zeta ')|}{|d(\zeta,\zeta ')|^\epsilon}$ \newline
+If $\epsilon$ is a real strictly positiv number, let $[f]_\epsilon= sup \frac{|f(\zeta)-f(\zeta')|}{|d(\zeta,\zeta')|^\epsilon}$ \newline
 We call $H_\epsilon(\Delta)$ the set of function $f$ with $[f]_\epsilon < \infty$
 \end{dfnt}
 We also define the norm $\| f \|=sup |f(\zeta)|$
@@ -190,20 +193,158 @@ There is a $n >0$ and $\epsilon \in ]0;1[$ and two constant
  \]
  \end{thm}
  \begin{proof}
- We fix $\epsilon \in ]0;1[$, $n$ a natural number and $f\in H_\epsilon(\Delta)$. Let's pick a couple of flag $(\zeta, \zeta' )= ((x,u),(x',u'))$ in the same triangle. We have \[
-\begin{aligned}
-\frac{\tilde{P}^n f(\zeta)-\tilde{P}^n f(\zeta')}{d(\zeta,\zeta')^\epsilon} & =& \sum_{\omega_n} \frac{|f(\omega_n \zeta)p(x,\omega_n)-f(\omega_n \zeta ')p(x',\omega_n)|}{d(\zeta,\zeta')^\epsilon} \\
-&\leq & [f]_\epsilon \sum_{\omega_n} (\frac{d(\omega_n \zeta, \omega_n \zeta')}{d(\zeta,\zeta')})^\epsilon p(x,\omega_n) + \| f \| \sum_{\omega_n} \frac{|p(x,\omega_n)-p(x',\omega_n)|}{d(\zeta,\zeta')^\epsilon}
-\end{aligned}
+ We fix $\epsilon \in ]0;1[$, $n$ a natural number and $f\in H_\epsilon(\Delta)$. Let's pick a couple of flag $(\zeta, \zeta' )= ((x,u),(x',u'))$ in the same triangle. We have
+\begin{flalign*}
+\frac{\tilde{P}^n f(\zeta)-\tilde{P}^n f(\zeta')}{d(\zeta,\zeta')^\epsilon} & \leq  \sum_{\omega_n} \frac{|f(\omega_n \zeta)p(x,\omega_n)-f(\omega_n \zeta')p(x',\omega_n)|}{d(\zeta,\zeta')^\epsilon} \\
+&\leq  [f]_\epsilon \sum_{\omega_n} (\frac{d(\omega_n \zeta, \omega_n \zeta')}{d(\zeta,\zeta')})^\epsilon p(x,\omega_n) + \| f \| \sum_{\omega_n} \frac{|p(x,\omega_n)-p(x',\omega_n)|}{d(\zeta,\zeta')^\epsilon}
+\end{flalign*}
+
+ We should know with the two terms. For the second one we have
+\begin{flalign*}
+\frac{|p(x,\omega_n)-p(x',\omega_n)}{d(\zeta,\zeta' )^\epsilon} & \leq  \frac{|p(x,\omega_n)-p(x',\omega_n)|}{\delta(x,x ')^\epsilon} \\
+ & \leq  C \frac{| \phi(x,\omega_n)-\phi(x',\omega_n)|}{\delta(x,x')^\epsilon}+ \frac{\phi(x,\omega_n)}{\delta(x,x')^\epsilon}|\frac{h(\omega_n x)}{h(x)}-\frac{h \omega_n x'}{h(x')}| \\
+ & \leq   C \frac{| \phi(x,\omega_n)-\phi(x',\omega_n)|}{\delta(x,x')^\epsilon} + \frac{1}{c}\phi(x,\omega_n) \delta(x,x')^{1-\epsilon}[h](1+\rho^n)
+\end{flalign*}
+
+ With $[h]$ the Lipschitz coefficient of $h$, $c$ a non negative under bound of $h$, $C$ a upper bound of $\frac{h(x)}{h(y)}$,
+ \color{green}And $\rho$ is a contraction constant over all function $a$ \color{black}.\newline
+ $\phi(.,\omega_n)$ are differential over $X$ and we have \[
+[\phi(.,\omega_n)]=\underset{x \ne x'}{sup} \frac{|\phi(x,\omega_n)-\phi(x',\omega_n)|}{\delta(x,x')} \leq \frac{c'}{(q^1_{i_1}...q^n_{i_n})^4}
  \]
- We should know with the two terms. For the second one
+ With $q^j_{i_j}= \underset{i_j=1,2,3}{max}(q^j_{i_j})$. Therefor
+ \begin{flalign*}
+\sum_{\omega_n} \frac{| \phi(x,\omega_n)-\phi(x',\omega_n)|}{d(\zeta,\zeta')^\epsilon}& \leq  \underset{x \ne x'}{sup} \  \partial(x,x')^{1-\epsilon} \sum_{\omega_n} \frac{c'}{(q^1_{i_1}...q^n_{i_n})^4} \\
+& \leq  C_\epsilon (\sum_{a \geq 1} \frac{a+1}{a^4})^n
+\end{flalign*}
+
+ This last sum in converging.As the sum $\sum_{\omega_n} \phi(x,\omega_n)$ is also converging we have shown the existence of $\beta \geq 0$ and this for every $\epsilon$ and $n$.\newline
+ We can now analyse the first term.\begin{flalign*}
+(\frac{d(\omega_n \zeta,\omega_n \zeta')}{d(\zeta,\zeta')})^\epsilon & =  (\frac{\partial(\omega_n x ,\omega_n x')+\delta((\omega_n')_x u,(\omega_n')_x' u'}{\partial(x,x')+\delta(u,u')})^\epsilon\\
+& \leq \frac{\partial(\omega_n x ,\omega_n x')}{\partial(x,x')}^\epsilon+ \frac{\delta((\omega_n')_x u,(\omega_n')_x' u')}{\delta(u,u')}^\epsilon \\
+& \leq  \rho^{n \epsilon}+ \frac{\delta((\omega_n')_x u,(\omega_n')_x' u')}{\delta(u,u')}^\epsilon \\
+\end{flalign*}
+So now we have to show that we can choose $\epsilon$ in $]0;1[$ and $n$ in $\mathbb{N}*$ such that \[
+\rho^{n \epsilon} + \underset{(\zeta,\zeta')\in M}{sup} \sum_{\omega_n}
+\frac{\delta((\omega_n')_x u,(\omega_n')_x' u')}{\delta(u,u')}^\epsilon p(x,\omega_n) < 1
+\]
+We will use the Lyapounov exponant associated with $T$. We call $M$ the set of all couple of flag $(\zeta,\zeta')=((x,u),(x',u'))$ which have their origin in the same simplex and have $u \ne u'$.\newline
+If we call $\mathcal{P}_2$the set of projective map from $\mathbb{R}^2$ in $\mathbb{R}$. We define the map $\theta$ from $\mathcal{P} \times M$ in$\mathbb{R}_+$ by \[
+\theta(a,(\zeta,\zeta'))=\frac{\delta(a'_x u , a'_{x'} u')}{\delta(u,u')}
+\]
+Then $\theta$ is a multiplicative cocycle. Indeed we have $(ab)'_x = a'_{bx}b'_x$ so \[
+\theta(ab,(\zeta,\zeta'))=\theta(a,(b \zeta,b \zeta')) \theta(a,(\zeta,\zeta'))
+\]
+Now we compactified $M$ in $\bar{M}$ by adding $M'={(x,u)}$. $M$ is an dense open of $\bar{M}$ and we can extend $\theta$ to it.\[
+\theta(a,(x,v))=\theta(a,\zeta=\frac{|det(a'x)|}{\| a'_x u \|^2}
+\]
+with $\|u\|=1$. Then for every $n$ there is $\zeta_n$ such that \[
+\underset{(\zeta,\zeta')\in M}{sup} \sum_{\omega_n} \theta(\omega_n,(\zeta,\zeta'))^\epsilon p(x,\omega_n)= \sum_{\omega_n} \theta(\omega_n,\zeta_n)^\epsilon p(x_n,\omega_n)
+\]
+For every real $x$, we have $e^x \leq 1+ x + \frac{1}{2}x^2 e^{|x|}$ so for every $n$ we have: \begin{flalign*}
+u_{n,\epsilon} & =  \sum_{\omega_n} \theta(\omega_n,\zeta_n)^\epsilon p(x_n,\omega_n) \\
+& \leq  1+ \epsilon \sum_{\omega_n} log\theta(\omega_n,\zeta_n)p(x_n,\omega_n)+\frac{\epsilon^2}{2}
+\sum_{\omega_n} (log \theta (\omega_n,\zeta))^2 e^{\epsilon |log \theta (\omega_n,\zeta)|}p(x,\omega)
+\end{flalign*}
+ \begin{lem}
+ The sum \[
+ \sum_{\omega_n} (log \theta (\omega_n,\zeta))^2 e^{\epsilon |log \theta (\omega_n,\zeta)|}p(x,\omega)
+ \]
+ converges uniformly on $\bar{M}$
+ \end{lem}
+
+\begin{proof}
+We have \[
+\theta(\omega_n,\zeta) = \frac{|det((\omega_n')_x)|}{\| (\omega_n')_x^{-1} \|}
+\]
+As $\omega_n$ is inversible we have \[
+\| (\omega_n)'_x u \| \geq \frac{\| u \|}{\|(\omega_n')_x^{-1} \|}
+\]
+The we get \[
+\theta(\omega_n,(\zeta,\zeta')) \leq \underset{x}{sup} |det (\omega_n')_x| \| (\omega_n')_x^{-1} \|^2
+\]
+And we got
+\[
+|det (\omega_n)'_x| = \frac{1}{(q_n+q_{n-1} x^1 +q_{n-2} x^2)^3} \leq \frac{1}{q_{i_n}}
+\]
+With $q_{i_n}=max(q_1,q_2,q_3)$.
+Moreover we have \[
+\| |det (\omega_n)'_x| \| \leq 2 \| \Lambda^2 S_n \| \|S_n \| \leq 2K \| S_n \|^2
+\]%NB pas clair il faudrait revoir ça
+(As $\lambda_2 \leq 0$ we can make the last inegualitie).\newline
+To sum up we have $\theta(\omega_n,\zeta) \leq C q_{i_n}$ then
+\begin{flalign*}
+ \sum_{\omega_n} (log \theta (\omega_n,\zeta))^2 e^{\epsilon |log \theta (\omega_n,\zeta)|}p(x,\omega) & \leq  C_\epsilon \sum_{\omega_n} (log(C q_n))^2 q_n^\epsilon p(x,\omega_n) \\
+ & \leq  C_\epsilon \sum_{q_n} \frac{\log(C q_n)^2}{q_n^{3-\epsilon}}
+\end{flalign*}
+
+This last sum converge if $\epsilon < 1$.
+\end{proof}
+
+
+\begin{lem}
+For $\zeta=(x,u)$ in $\Delta$ we can define $f$ with \[
+f(\zeta)=\sum_a log \theta(a,\zeta)p(x,a)
+\]
+Then we get \[
+\sum_{\omega_n} log \theta(\omega_n,\zeta_n)p(x_n,\omega_n)=\sum_{k=0}^{n-1} \tilde{P}^k f(\zeta_n)
+\]
+\end{lem}
+\begin{proof}
+We write $\omega_n =a_1 a_2 ... a_n$. AS $\theta$ is a cocycle we have \[
+log \theta(\omega_n , \zeta_n)=\sum_{k=1}^n log \theta(a_k,a_{k+1}...a_n \zeta_n)
+\]
+And we have for all $k$:\[
+p(x_n,\omega_n)=p(a_2...a_n x_n,a_1)...p(a_{k+1}...a_n x_n,a_k)...p(x_n , (a_{k+1} ... a_n))
+\]
+So we get: \[
+\sum_{\omega_n}  log \theta(\omega_n,\zeta_n)p(x_n,\omega_n)
+= \sum_{k=1}^n
+ \sum_{\omega'_{n-k}}(\sum_{a_k}
+ log \theta(a_k,\omega'_{n-k} \zeta_n)
+ p(\omega'_{n-k}, a_k)) p(x_n,\omega'_{n-k})
+\]
+With $\omega'_{n-k}=(a_{k+1}...a_n)$ and as \[
+\sum_{a_1}...\sum_{a_{k-1}}p(a_2... a_n x_n ,a_1)...p(a_k...a_n x_n , a_{k-1}) =1
+\]
+So \[
+\sum_{\omega_n}  log \theta(\omega_n,\zeta_n)p(x_n,\omega_n) = \sum_{k=1}^n \sum_{\omega'_{n-k}} f(\omega'_{n-k} \zeta_n) p(x_n, \omega'_{n-k})=\sum_{k=0}^{n-1} \tilde{P}^k f(\zeta_n)
+\]
+\end{proof}
+\begin{lem}
+There is a real $\gamma$, $- \lambda_1 \leq \gamma < 0$ such for $n$ large enough we have \[
+\sum_{\omega_n}  log \theta(\omega_n,\zeta_n)p(x_n,\omega_n) \leq n \gamma < 0
+\]
+\end{lem}
+
+\begin{proof}%TODO voir si on met le lemme 4.1
+$f$ is continuous in $\tilde{\Delta}$ so we have that $\frac{1}{n} \sum_{k=0}^{n-1} \tilde{P}^k f(\zeta)$ converge uniformly to $\tilde{\pi}(f)$ Moreover \[
+\tilde{\pi}(f)=\int_X f(\zeta_x)d \pi(x) = \int_X \sum_a log \theta (a,\zeta_x)p(x,a) d \pi(x)
+\]
+If we note $g$ the function $g(\zeta)=log \theta(a^x,\tilde{T}\zeta)$ if $\zeta=(x,u)$ we have $\tilde{P}g(\zeta)=f(\zeta)$ and \[
+\tilde{\pi}(f)=\int_X \tilde{P}g(\zeta_x) d \pi(x) = \int_X g(\zeta_x) d \pi(x)= \lambda_3 - \lambda_2 = - \lambda_1 < 0
+\]
+because we have $\lambda_2=0$ and $\lambda_1 > 0$. %NB ou simplicite de spectre
+ We can conclude that there is a real $\gamma$, $- \lambda_1 < \gamma < 0$ such that eventually we have \[
+ \sum_{k=0}^{n-1}\tilde{P}^k f(\zeta_n) \leq n \gamma <0
+ \]
+\end{proof}
+We can now end the demonstration of theorem 7.1. We choose $n$ big enough for the inequality of the previous lemma to be true and we choose $\epsilon$ in $]0;1[$ small enough for \begin{flalign*}
+1) & -1 \leq n \gamma \epsilon < 0 \\
+2) & \rho^{n \epsilon}+ \frac{1}{2} \epsilon^2 \sum_{\omega_n} [log \theta(\omega_n,(\zeta,\zeta'))]^2 e^{\epsilon |log \theta(\omega_n,(\zeta,\zeta'))|}p(x,\omega_n) << n \gamma \epsilon
+\end{flalign*}
+We can conclude \[
+\rho^{n\epsilon} + sup \sum_{\omega_n}
+\frac{\delta((\omega_n')_x u,(\omega_n')_x' u')}{\delta(u,u')}^\epsilon p(x,\omega_n) \leq \alpha < 1
+\]
  \end{proof}
+
 \subsection{Proof of the cohomologic equation}
+Now we can show the theorem 4.2
 \begin{proof}
 As for every $f$ in $H_\epsilon(\Delta)$ we have: \[
 [\tilde{P}^n f]_\epsilon \leq \alpha [f]_\epsilon +\beta \| f \|
 \]
-The theorem of Ionescu-Tulcea and Marinescu \cite{ITM} give the spectral decomposition of the operator $\tilde{P}$ in $H_\epsilon(\Delta)$: there is a finites number of eighenvalue of module $1$ who have finite multiplicity and the other part of the spectra is of module strictly less than $1$. We can also write: \[
+The theorem of Ionescu-Tulcea and Marinescu \cite{ITM} give the spectral decomposition of the operator $\tilde{P^n}$ in $H_\epsilon(\Delta)$: there is a finites number of eighenvalue of module $1$ who have finite multiplicity and the other part of the spectra is of module strictly less than $1$. We can also write: \[
 \tilde{P^n}f=\sum_{i=1}^p \lambda_i \tilde{P_i}f + \tilde{R}f
 \]
 where $\lambda_i$ are the eighenvalue with module $1$, $\tilde{P_i}$ are the projection on the eighen spaces who have finite dimension and $\tilde{R}$ is a linear operator of $H_\epsilon(\Delta)$ with spectral radius $r<1$ (according to the ITM theorem).\newline
@@ -211,21 +352,41 @@ As the dynamical system $(\Delta,B_\Delta,\tilde{T,\tilde{\pi}})$ is mixing and 
 \tilde{P^n}f=\tilde{\pi}(f)+\tilde{R}f
 \]
 with $\| \tilde{R^m}f\| \leq r^m \|f\|$\newline
-So if we got two solution $g$ and $h$ of $\tilde{P}f=\tilde{P}g-g$ with $\tilde{pi}(g)=\tilde{\pi}(h)=0$ we have: \[
+So if we got two solution $g$ and $h$ of $\tilde{P}f=\tilde{P}g-g$ with $\tilde{\pi}(g)=\tilde{\pi}(h)=0$ we have: \[
 \tilde{P}(g-h)=(g-h)
 \]
-So $g-h$ is constant and therefor nul.\newline
-Let $f$ be a function suct that $\tilde{P}f$ is in $H_\epsilon(\Delta)$ and is integral is zero, we can find asolution of the equation:\[
+So $g-h$ is constant and therefor equal to 0.\newline
+Let $f$ be a function such that $\tilde{P}f$ is in $H_\epsilon(\Delta)$ and is integral is zero, we can find asolution of the equation:\[
 \tilde{P}f=\tilde{P}g-g
 \]
-Indeed the solution should be $g=-\sum_{k=2}^{\infty} \tilde{P^k}f$, we have to prove that $g\in H_\epsilon(\Delta)$.\newline
-As $\tilde{\pi}(f)=0$ we have $\tilde{P^n}f=\tilde{R}f$
+Indeed the solution should be $g=-\sum_{k=1}^{\infty} \tilde{P^k}f$, we have to prove that $g\in H_\epsilon(\Delta)$.\newline
+As $\tilde{\pi}(f)=0$ we have $\tilde{P}^{nm} f=\tilde{R}^m f$ so\[
+\|\tilde{P}^{nm} f\| \leq r^m \|f \|
+\]
+Let $k$ and $j$ be natural numbers we have
+ \begin{flalign*}
+\ [\tilde{P}^{jn+k}f]_\epsilon & \leq  \alpha [\tilde{P}^{(j-1)n+k}f]_\epsilon + \beta \| \tilde{P}^{(j-1)n+k}f \| \\
+& \leq  \alpha (\alpha [\tilde{P}^{(j-2)n+k}f]_\epsilon + \beta \| \tilde{P}^{(j-2)n+k}f \|) + \beta r^{j-1}\| \tilde{P}^k f \| \\
+& \leq  \alpha^j [\tilde{P}^k f]_\epsilon + \alpha^{j-1} \beta  \| \tilde{P}^k f \| + ... + \beta r^{j-1} \| \tilde{P}^k f \| \\
+& =  \alpha^j [\tilde{P}^k f]_\epsilon + \beta \| \tilde{P}^k f \| \sum_{i=0}^{j-1} \alpha^{j-1-i}r^i
+\end{flalign*}
+So if we could choose $r < \alpha$ we have \[
+[\tilde{P}^{jn+k}f]_\epsilon \leq \alpha^j ([\tilde{P}^k f]_\epsilon+\| \tilde{P}^k f \| \frac{\beta}{\alpha - r})
+\]
+Then for every $N$ \begin{flalign*}
+\ [ \sum_{k=1}^N \tilde{P}^k f ]_\epsilon & \leq & \sum_{k=1}^N [\tilde{P}^k f]_\epsilon \\
+& \leq  \sum_{k=1}^{n(1+\lfloor \frac{N}{n} \rfloor)} [\tilde{P}^k f]_\epsilon \\
+& \leq  \sum_{k=0}^{n-1} \sum_{j=1}^{1+\lfloor \frac{N}{n} \rfloor} [\tilde{P}^{jn+k} f]_\epsilon\\
+& \leq  \sum_{k=0}^{n-1} \sum_{j=1}^{1+\lfloor\frac{N}{n} \rfloor} \alpha^j ([\tilde{P}^k f]_\epsilon+\| \tilde{P}^k f \| \frac{\beta}{\alpha - r}) \\
+& \leq  \frac{1}{\alpha} \sum_{k=0}^{n-1} [\tilde{P}^k f]_\epsilon+\| \tilde{P}^k f \| \frac{\beta}{\alpha - r}
+\end{flalign*}
+Which is independant of $N$. So $g$ is in $H_\epsilon(\Delta)$.
 \end{proof}
 
 \section{End of demonstration}
 
 \begin{dfnt}
-Let $\alpha (g,\zeta)=\frac{\| g'_x u\|**3}{|det g'_x|}$, it is a cocycle, $\alpha(g g', \zeta)=\alpha(g,g' \zeta) \alpha(g',\zeta)$.
+Let $\alpha (g,\zeta)=\frac{\| g'_x u\|^3}{|det g'_x|}$, it is a cocycle, $\alpha(g g', \zeta)=\alpha(g,g' \zeta) \alpha(g',\zeta)$.
 \end{dfnt}
 
 \begin{thm} For $\tilde{\pi}$ almost every $\zeta=(x,u)$ if $\omega_n=a_1 ... a_n$ are the first term of the decomposition we have \[
@@ -234,7 +395,7 @@ Let $\alpha (g,\zeta)=\frac{\| g'_x u\|**3}{|det g'_x|}$, it is a cocycle, $\alp
 \end{thm}
 
 \begin{proof}
-We have $\omega_n x = S_n x$ and $|det (\omega_n)'_x |=\frac{1}{(q_n+q_{n-1}x^1+q_{n-2}x^2)^3}$. As $\tilde{\pi}$ is concentred on the couples $(x,\zeta_x)$ with $\zeta_x=(e^1_x,e^1_x \land e^2_x)$ so we have \[
+We have $\omega_n x = S_n x$ and $|det (\omega_n)'_x |=\frac{1}{(q_n+q_{n-1}x^1+q_{n-2}x^2)^3}$. As $\tilde{\pi}$ is concentred on the couples $(x,\zeta_x)$ with $\zeta_x=(e^1_x,e^1_x \land e^2_x)$ we have \[
 \alpha(\omega_n,\tilde{T^n}\zeta_x)=\frac{\| (\omega_n)'_x  e^1_x \land e^2_x\|}{| det (\omega_n)'_x |}
 \]
 We can conclude with theorem 3.1 .
@@ -252,12 +413,13 @@ $\tilde{\pi}(f)=0=\lambda_2$
 By the ergodique theorem we have \[
 \frac{1}{n} \sum_{k=0}^n f \circ T^k (\zeta) \to \tilde{\pi}(f)
 \]
-And we also have \[\begin{aligned}
-\frac{1}{n} \sum_{k=0}^n f \circ T^k (\zeta) & = & \frac{1}{3n} \sum_{k=0}^{n-1} log \frac{ \| (a_{T^k x})' \tilde{T^{k+1}} \zeta \| }{| det a_x'|}\\
- &=& \frac{1}{3n} log \prod_{k=0}^{n-1} \frac{ \| (a_{T^k x})' \tilde{T^{k+1}} \zeta \| }{| det a_x'|} \\
- &=&  \frac{1}{3n} log \alpha(\omega_n,\tilde{T}^n \zeta_x)
-\end{aligned}
-\]
+And we also have
+\begin{flalign*}
+\frac{1}{n} \sum_{k=0}^n f \circ T^k (\zeta) & =  \frac{1}{3n} \sum_{k=0}^{n-1} log \frac{ \| (a_{T^k x})' \tilde{T^{k+1}} \zeta \| }{| det a_x'|}\\
+ &= \frac{1}{3n} log \prod_{k=0}^{n-1} \frac{ \| (a_{T^k x})' \tilde{T^{k+1}} \zeta \| }{| det a_x'|} \\
+ &=  \frac{1}{3n} log \alpha(\omega_n,\tilde{T}^n \zeta_x)
+\end{flalign*}
+
 \end{proof}
 
 To conclude we should have the following hypothetises
