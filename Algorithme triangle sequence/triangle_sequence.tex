@@ -96,4 +96,21 @@ La preuve se faite par récurence. Supposons que nous ayons $\|\beta_3^{(n)}\| \
 \end{array}
 \]
 \end{proof}
+\section{$\lambda_1$ is strictly more than $0$}
+In this paper \ref{MNS}, Messaoudi, Nogueria and Schweiger have schown the following theorem
+\begin{thm}
+For almost $\pi$-every $x$ in $\Delta$ the triangle algorithm is weakly convergent
+\end{thm}
+This implie that the first exponant of Lyapounov is strictly greater than $0$.
+\begin{thm}
+For the algorithm of the triangle partition we have $\lambda_1 > 0$
+\end{thm}
+\begin{proof}
+We have $\lambda_1=\underset{n \to \infty}{lim}\frac{1}{n} log \| S_n \|$. And this is not influence by the choice of the norm. So we can choose the maximum of the (positif) coefficient of the matrice. We can easly have that \[
+\| S_n \| = max(a_1^n,a_2^n)
+\]
+Then as almost every number is irrational and $\frac{b_1^n}{a_1^n} \to x$, $\frac{c_1^n}{a_1^n} \to y$,$\frac{b_2^n}{a_2^n} \to x$ and $\frac{c_2^n}{a_2^n} \to y$, we can conclude that $max(a^n_1,a^n_2) \to infty$
+We have $1=\times x_i(a_1^n+x_n a_2^n+y_n a_3^2 )$
+\end{proof}
+
 \end{document}

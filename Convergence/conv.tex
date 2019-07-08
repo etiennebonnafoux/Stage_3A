@@ -47,41 +47,49 @@
 \newcommand{\Ncref}[1]{\Cref{#1} \Nameref{#1}}
 
 % TODO ajouter les opérateurs markoviens
+%TODO la fonction doit être aussi log integrable
 \begin{document}
 \tableofcontents
 \section*{Introduction}
-Supposons que l'on n'a déjà montrer la convergence faible d'un algorithme.
-L'existence d'une mesure invariante et suffisament régulière est aussi primordiale.
-Le système doit bien sûre être mélangeant.
-Pour qu'un algorithme converge il faut que son opérateur markovien associé à l'extension au drapeau satisfasse les hypothèses du théorème specrtal de Ionescu-Tulcea et Marinesca.
-De là nous pouvons en déduire la régularité de la solution de l'équation cohomologique.
-Sous couvert de régularité de $f$ et de la nullité de son intégral nous avons donc égalité par tout. Il faut ensuite montrer l'existence d'un point fixe pour la transformation étendu au drapeau.
-Puis il faut montrer que la valeur de $f$ en ce point fixe ne peut être nul ce qui amène une contradiction.
-\section{Definition}
-Let $\Delta=\{ 1 \geq x_1 \geq x_2 \geq 0 \}$ and $T:\Delta \to \Delta$ with \[ T(x_1,x_2)=(\frac{p_0+p_1 x_1+p_2 x_2}{q_0+q_1 x_1 +q_2 x_2},\frac{r_0+r_1 x_1+r_2 x_2}{q_0+q_1 x_1 +q_2 x_2}) \] with $(p_i,r_i,q_i)_{i=1,2,3}\in \mathbb{N}^9$ be piecewide constant function.Each piece is call $\Delta_a$. It is natural to associate with$T $ the matrix $M=\begin{pmatrix} q_0 & q_1 & q_2 \\ p_0 & p_1 & p_2 \\ r_0 & r_1 & r_2 \end{pmatrix}$ with $det(M)=1$ and $M^{-1}=\begin{pmatrix} a_0 & a_1 & a_2 \\ b_0 & b_1 & b_2 \\ c_0 & c_1 & c_2 \end{pmatrix}$
-If $\tau: \Delta \to \mathbb{R}^3, (x_1,x_2) \mapsto (1,x_1,x_2)$ and $\overset{-}{.}: \mathbb{R^+}^3 \to \Delta,(x_0,x_1,x_2) \mapsto (\frac{x_1}{x_0},\frac{x_2}{x_0})$
+The goal of this paper is to devellop a method to show that a algorithm is strongly convergent.
+We suppose we already have schow that this algorithm is weakly convergent
+First we have to be sure that there exists a smooth mesure for wich the dynamic is mixing.
+Then we should get the condition of the Ionescu-Tulcea Marinesca theorem for the associated operator.
+From there we could show the regularitie of the solution of a cohomologic equation
+To finish if we can get a contradiction with a smooth enough fonction f, and a fixed point of the dynamic. The value should be null, and we show that it is not.
+
+\section{Definition}% TODO a redefinir avec les notions de fibré du truc de Selmer
+Let $\Delta=\{ 1 \geq x_1 \geq x_2 \geq 0 \}$ and $T:\Delta \to \Delta$ with \[ T(x_1,x_2)=(\frac{p_0+p_1 x_1+p_2 x_2}{q_0+q_1 x_1 +q_2 x_2},\frac{r_0+r_1 x_1+r_2 x_2}{q_0+q_1 x_1 +q_2 x_2}) \] with $(p_i(x),r_i(x),q_i(x))_{i=1,2,3}\in \mathbb{N}^9$ be piecewide constant, on some simplex, functions.Each simplex where the cooefficient are constant will be call $\Delta_\sigma$ with $\sigma \in \Sigma$ the set of all simplex. So we have
+\[
+\Delta = \cup_{\sigma \in \Sigma} \Delta_\sigma
+\]
+For almost every $x \in \Delta$ we can associate $\sigma(x)$ the simplexe in which it is (the point on the intersection of two simplex could create problem, but they have a measure null).
+\newline It is natural to associate to $T$ the matrix $M(x)=M(a)=\begin{pmatrix} q_0 & q_1 & q_2 \\ p_0 & p_1 & p_2 \\ r_0 & r_1 & r_2 \end{pmatrix}$. Moreover we ask that $det(M)=1$ and we will note $M^{-1}=\begin{pmatrix} a_0 & a_1 & a_2 \\ b_0 & b_1 & b_2 \\ c_0 & c_1 & c_2 \end{pmatrix}$%TODO notation de merde pour les coeff
+\newline
+So if $\tau: \Delta \to \mathbb{R}^3, (x_1,x_2) \mapsto (1,x_1,x_2)$ and $\overset{-}{.}: \mathbb{R^+}^3 \to \Delta,(x_0,x_1,x_2) \mapsto (\frac{x_1}{x_0},\frac{x_2}{x_0})$
 Then $T=\overset{-}{.} \circ M \circ \tau$.\newline
-Let $a$ be the locally inverse of $T$, $a:T(\Delta_a) \to \Delta_a$. We have $a(x_1,x_2)=(\frac{b_0+b_1 x_1 + b_2 x_2}{a_0 + a_1 x_1 + a_2 x_2},\frac{c_0 + c_1 x_1 + c_2 x_2}{a_0 + a_1 x_1 + a_2 x_2})$. Then we call $\omega_n=a_n a_{n-1} ... a_0$.\newline
+Let $a(\sigma)$ be the locally inverse of $T$, $a:T(\Delta_\sigma) \to \Delta_\sigma$. We can compute that $a(x_1,x_2)=(\frac{b_0+b_1 x_1 + b_2 x_2}{a_0 + a_1 x_1 + a_2 x_2},\frac{c_0 + c_1 x_1 + c_2 x_2}{a_0 + a_1 x_1 + a_2 x_2})$. Then we call $\omega_n=a_n a_{n-1} ... a_0$ with $a_i=a(\sigma(T^i x))$\newline
 We have $x=\omega_n T^n(x)$.
 \newline
 \color{green}
-We suppose that this dynamic is mixing and admit an invariant mesure $\pi$ which is regular according to the Lesbegue mesure in the following sence: there is a function $h$, analytic on the $\Delta_a$ such that $h \pi= Leb$
+We suppose that this dynamic is mixing and admit an invariant mesure $\pi$ which is regular according to the Lesbegue mesure in the following sence: there is a function $h$, analytic on the $\Delta_\sigma$ such that $h \pi= Leb$
 \color{black}
+
 \subsection{Markovian operator}
 We now define the adjoint operator $P$ of $T$ on $L^1_{\pi}(\Delta)$ by \[
-Pf(x)=\sum_{a} f(a x)\frac{h(a.x)}{h(x)}(Jac(T)_x)^{-1} \mathbf{1} _{T(\Delta_a)}(x)
+Pf(x)=\sum_{a(\sigma)} f(a x)\frac{h(a.x)}{h(x)}(Jac(T)_x)^{-1} \mathbf{1} _{T(\Delta_\sigma)}(x)
 \]
 With $Jac(T)_x$ the jacobian of $T$\newline
-To abbreviate the notation we will write $p(x,a)=\frac{h(a.x)}{h(x)}(Jac(T(x)))^{-1} \mathbf{1}_{T(\Delta_a)}(x)$\newline
-We should also define $\phi(x,a)=(Jac(T(x)))^{-1} \mathbf{1}_{T(\Delta_a)}(x)$ that we will use after. \newline
+To abbreviate the notation we will write $p(x,a)=\frac{h(a.x)}{h(x)}(Jac(T(x)))^{-1} \mathbf{1}_{T(\Delta_\sigma)}(x)$\newline
+We should also define $\phi(x,a)=(Jac(T(x)))^{-1} \mathbf{1}_{T(\Delta_\sigma)}(x)$ that we will use after. \newline
 We have $P1=1$
 
 \section{Extension of the algorithm at the flag}
-We need to extend our definition to the flag. Let $\tilde{\Delta}=\Delta*\mathbb{P}^1$ be the set of point in $\Delta$ with a direction. We define a distance on this set by \[
+We need to extend our definition to the flag. Let $\tilde{\Delta}=\Delta*\mathbb{P}^1$ be the set of point in $\Delta$ to which we attach a direction. We define a distance on this set by \[
 \zeta=(x,u),\zeta'=(x',u'),d(\zeta,\zeta')=\delta(x,x')+\partial (u,u')
 \]
 with $\delta$ the euclidean distance and $\partial$ the absolute value between the sinus of the two angles.
-One can show that it is indeed a distance on $\tilde{\Delta}$\newline
+One can show that it is indeed a distance on $\tilde{\Delta}$.\newline
 We extend now the action of $T$ and $a$ in $\tilde{T}$ and $\tilde{a}$ with\[
 \tilde{T}(x,u)=(Tx,T'_x u)
 \]
@@ -106,7 +114,7 @@ We also extend $P$ in $\tilde{P}$ by \[
 With $a$ going on all allowed transformation.
 
 \section{Creation of an invariante mesure}
-We supposed that there is an invariant for $T$, ergodic mesure $\pi$ on $\Delta$ and that the system is mixing %TODO donner des exemples de papiers où c'est donner
+We supposed that there is an invariant for $T$, ergodic mesure $\pi$ on $\Delta$ and that the system is mixing \ref{'BA'} %TODO donner des exemples de papiers où c'est donner
 . Again we should extend this mesure to $\tilde{\pi}$ on $\tilde{\Delta}$.\newline
 \subsection{Oseledets Theorem}
 Let's recall the Oseledets Theorem
@@ -147,7 +155,7 @@ converge $\pi$ almost surely to a symetric matrix with eigenvalues $e^{\lambda_1
 $\tilde{\pi}(f)=\int_X f(\zeta_x) d \pi(x)$
 \end{dfnt}
 
-\begin{thm} % NB on a besoin que le system soit melangeant
+\begin{thm}
 $\tilde{\pi}$ is invariant by $\tilde{T}$, $\tilde{P}$ is the adjoint operator of $\tilde{T}$ on $\Delta$ with respect to $\tilde{\pi}$. $(\Delta,B_\Delta,\tilde{T},\tilde{\pi})$ is a mixing system.
 \end{thm}
 
@@ -374,7 +382,7 @@ So if we could choose $r < \alpha$ we have \[
 [\tilde{P}^{jn+k}f]_\epsilon \leq \alpha^j ([\tilde{P}^k f]_\epsilon+\| \tilde{P}^k f \| \frac{\beta}{\alpha - r})
 \]
 Then for every $N$ \begin{flalign*}
-\ [ \sum_{k=1}^N \tilde{P}^k f ]_\epsilon & \leq & \sum_{k=1}^N [\tilde{P}^k f]_\epsilon \\
+\ [ \sum_{k=1}^N \tilde{P}^k f ]_\epsilon & \leq  \sum_{k=1}^N [\tilde{P}^k f]_\epsilon \\
 & \leq  \sum_{k=1}^{n(1+\lfloor \frac{N}{n} \rfloor)} [\tilde{P}^k f]_\epsilon \\
 & \leq  \sum_{k=0}^{n-1} \sum_{j=1}^{1+\lfloor \frac{N}{n} \rfloor} [\tilde{P}^{jn+k} f]_\epsilon\\
 & \leq  \sum_{k=0}^{n-1} \sum_{j=1}^{1+\lfloor\frac{N}{n} \rfloor} \alpha^j ([\tilde{P}^k f]_\epsilon+\| \tilde{P}^k f \| \frac{\beta}{\alpha - r}) \\
@@ -430,4 +438,7 @@ To conclude we should have the following hypothetises
 \end{itemize}
 Then according to the theorem $4.2$ there exists $g$ in $H_\epsilon(\Delta)$ such as $f=g-g \circ T$ almost everywhere. With the continuity of $f$ and $g$ this equality become true everywhere.\newline
 So we have $f(\zeta_0)=0$. We just need to verify that is it not true.
+
+\bibliographystyle{plain}
+\bibliography{./biblio.bib}
 \end{document}
