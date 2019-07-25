@@ -1,0 +1,470 @@
+We need to extend our definition to the flag. Let $\tilde{\Delta}=\Delta*\mathbb{P}^1$ be the set of point in $\Delta$ to which we attach a direction. We define a distance on this set by \[
+\zeta=(x,u),\zeta'=(x',u'),d(\zeta,\zeta')=\delta(x,x')+\partial (u,u')
+\]
+with $\delta$ the euclidean distance and $\partial$ the absolute value between the sinus of the two angles.
+One can show that it is indeed a distance on $\tilde{\Delta}$.\newline
+We extend now the action of $T$ and $a$ in $\tilde{T}$ and $\tilde{a}$ with \begin{flalign*}
+\tilde{T}(x,u)=(Tx,T'_x u)
+\tilde{a}(x,u)=(ax,a'_x u)
+\end{flalign*}
+We can compute \[
+T'_x=(\frac{1}{q_0+q_1 x_1 + q_2 x_2})^2 \begin{pmatrix}
+(p_1 q_0 - p_0 q_1)+(p_1 q_2-q_1 p_2)x_2 & (p_2 q_0-q_2 p_0)+(p_2 q_1 -q_2 p_1) x_1 \\
+(r_1 q_0 - r_0 q_1)+(r_1 q_2-q_1 r_2)x_2 & (r_2 q_0-q_2 r_0)+(r_2 q_1 -q_2 r_1) x_1 \\
+\end{pmatrix}
+\]
+Or \[
+T'_x = (\frac{1}{q_0+q_1 x_1 + q_2 x_2})^2 \begin{pmatrix}
+c_2-a_2 x_2 & -b_2+a_2 x_1 \\
+-c_1+a_1 x_2 & b_1 - a_1 x_1 \\
+\end{pmatrix}
+\]
+Then we have $det(T_x')= (q_0+q_1 x_1 + q_2 x_2)^{-3}$ \newline
+We can do the same computation with $a$.
+
+\subsubsection{Markovian operator}
+We also extend $P$ in $\tilde{P}$. If $f \in L^1_\pi(\tilde{\Delta})$ we have: \[
+\tilde{P}f(\zeta)=\sum_a f(a \zeta) p(x,a)
+\]
+With $a$ going on all allowed transformation.
+
+\subsection{Creation of an invariante mesure}
+We supposed that there is an invariant for $T$, ergodic mesure $\pi$ on $\Delta$ and that the system is mixing \cite{'BA'} %TODO donner des exemples de papiers où c'est donner
+. Again we should extend this mesure to $\tilde{\pi}$ on $\tilde{\Delta}$.\newline
+\subsubsection{Oseledets Theorem}
+Let's recall the Oseledets Theorem
+% TODO : parler d'extension naturel
+\begin{thm}
+If $\int_\Delta log^+(\| M(x) \| ) d \pi < \infty $ with $log^+(x)=log(max(x,1))$ \newline
+There is $B \subset \Delta$ with $\pi(B)=1$ and $T^{-1}(B) \subset B$ such as for  $x\in B$ there are three vector $e^1_x,e^2_x,e^3_x$ of $\mathbb{R}^3$ such that
+\begin{flalign*}
+& 1)(e^1_x,e^2_x,e^3_x)\text{is a continuous function in } \mathbb{R} \\
+& 2)e^i_{Tx}=Be^i_{Tx} \\
+& 3)\text{if }v=ae^1_x+be^2_x+ce^3_x\\
+& lim \frac{1}{n}log \|S_n^{-1}(x)v\|=
+\left \{ \begin{matrix}
+\lambda_1,c \ne 0\\
+\lambda_2,c=0,b \ne 0 \\
+\lambda_3,c=b=0,a\ne 0
+\end{matrix}
+\right .
+\end{flalign*}
+\end{thm}
+
+\subsubsection{Invariant mesure}
+Let $\zeta(x)$ be the contractil flag of the dynamic in $x$\newline
+Then we can show that
+\begin{thm}
+\tabto{2cm} Let $\mu$ be a probability on $\Delta$ with a support different of $p \cup \Delta$. Then for $\pi$ almost every $x$ $\zeta(x)$ is a atom of the sequence of mesure $S_n(x)\mu$
+\end{thm}
+\begin{proof}
+Let $S_n^{-1}(x)=K_n D_n K_n'$ be the Cartan decomposition of the matrix $S_n^{-1}(x)$, we know that \[
+((S_n^{-1}(x))^{t}
+ S_n^{-1}(x))^{\frac{1}{2n}} =
+ K_n^{-1'}
+ D_n^{\frac{1}{2n}}
+ K_n'
+\]
+\tabto{2cm} converge $\pi$ almost surely to a symetric matrix with eigenvalues $e^{\lambda_1},e^{\lambda_2},e^{\lambda_3}$. Moreover $lim_n K'_n D_n^{\frac{1}{2n}} K_n'=k'^{-1}D K'$, $D$ is diagonal and the basis $K' e_i$ is normal associated with the basis $e_i^{x}$. \newline
+Particulary for every flag $\zeta$ of $\Delta$ the sequence $K'_n \zeta$ converge to $K'^{-1} \zeta$.
+ \tabto{2cm} Let fix $x$ in $\Delta$ and let $n_i$ be a sequence of increasing number such that $K^{-1}_{n_i}$ converges to $K^{-1}$.
+If $p$ is the point of $\mathbb{P}^2$ define by $K e_1$
+ and $D$ the lign defined by $(K e_1, K e_2)$, as $S_n= K'^{-1}_n D_n^{-1} K_n^{-1}$ the previous convergences show that if $\zeta \notin \tilde{p} \cup \tilde{\Delta}$ we have \[
+\underset{i \to \infty}{lim} S_{n_i} \zeta =\zeta_x
+\]
+\tabto{2cm} Now let take a measure is not concentrate on a set like $\tilde{p} \cup \tilde{D}$. We call $\mu_{p,D}$ the restriction of $\mu$ to the complementary of $\tilde{p \cup \tilde{D}}$ and $\epsilon$ the mass of $\mu_{p,D}$, we have $\epsilon > 0$ . The lemma of the dominated convergence gives that $lim_{i \to \infty} S_{n_i} \mu_{p,D} = \epsilon \delta_{\zeta_x}$ .
+We can conclude that every accumulation point of $S_n \mu$ is greater than $\epsilon \delta_{\zeta_x}$ where $\epsilon > 0$
+is a constant which depend of $\mu$ and the sub-sequence we choose. Thereby $\zeta_x$ is an atom of every accumulation point of the sequence $S_n \mu$.
+\end{proof}
+\begin{dfnt}
+$\tilde{\pi}(f)=\int_X f(\zeta_x) d \pi(x)$
+\end{dfnt}
+
+\begin{thm}
+$\tilde{\pi}$ is invariant by $\tilde{T}$, $\tilde{P}$ is the adjoint operator of $\tilde{T}$ on $\Delta$ with respect to $\tilde{\pi}$. $(\Delta,B_\Delta,\tilde{T},\tilde{\pi})$ is a mixing system.
+\end{thm}
+
+\begin{proof}
+If $f$ is in  $L_1(\tilde{\Delta})$, then the function $\phi(x)=f(\zeta_x)$ is in $L_1(\Delta)$ and we have $\tilde{\pi}(f) = \pi (\phi)$.
+\newline
+Then we have $\tilde{T} \zeta_x = \zeta_{\tilde{T}x}$ and $\pi$ is invariant by $T$, $P$ is the adjoint of $T$ on $\Delta$ with respect to $\pi$ and $(\Delta, B, T, \pi)$ is mixing.
+\end{proof}
+
+\subsection{Cohomologic equation}
+We can easly show this theorem:
+\begin{thm}
+Let $f \in L^1(\Delta)$, if there is $c>0$ such that $\forall n$ $|\sum_{k \leq n}f \circ T^k|\leq c$ almost everywhere and $\pi(f)=0$ then there is $g$ such that \[
+f=g-g \circ T \ p.p.
+\]
+\end{thm}
+We want to make this theorem more precise and we will need that the equallity above is true everywhere. To do so we should show a $g$ has a certain regularity. So we want to show this theorem:
+\begin{thm}
+Let $f \in L^1_\pi(\Delta)$ be a real function such that \begin{flalign*}
+& 1)\tilde{\pi}(f)=0 \\
+& 2)\tilde{P}f \in H_\epsilon(\Delta)\\
+& 3)\exists c \geq 0,\forall n \ for\ almost\ every\ \zeta \ \sum_{k \leq n}f \circ T^k(\zeta)\leq c
+\end{flalign*}
+
+then there exists a unique $g \in H_\epsilon(\Delta)$ such that \begin{flalign*}
+& 1)\tilde{\pi}(g)=0 \\
+& 2)f=g-g\circ T \ p.p. \\
+& 3)\tilde{P}f=\tilde{P}g-g
+\end{flalign*}
+
+\end{thm}
+To do so we should first show a contraction equation;
+\subsubsection{Contraction of the operator $\tilde{P}$ }
+\begin{dfnt}
+If $\epsilon$ is a real strictly positiv number, let $[f]_\epsilon= sup \frac{|f(\zeta)-f(\zeta')|}{|d(\zeta,\zeta')|^\epsilon}$ \newline
+We call $H_\epsilon(\Delta)$ the set of function $f$ with $[f]_\epsilon < \infty$
+\end{dfnt}
+We also define the norm $\| f \|=sup |f(\zeta)|$
+\begin{thm}
+There is a $n >0$ and $\epsilon \in ]0;1[$ and two constant
+ $0 \leq \alpha < 1$ and $\beta \geq 0$ such that for all $f\in H_\epsilon(\Delta)$
+ we have \[
+[\tilde{P}^n f]_\epsilon \leq \alpha [f]_\epsilon +\beta \| f \|
+ \]
+ \end{thm}
+ \begin{proof}
+ We fix $\epsilon \in ]0;1[$, $n$ a natural number and $f\in H_\epsilon(\Delta)$. Let's pick a couple of flag $(\zeta, \zeta' )= ((x,u),(x',u'))$ in the same triangle. We have
+\begin{flalign*}
+\frac{\tilde{P}^n f(\zeta)-\tilde{P}^n f(\zeta')}{d(\zeta,\zeta')^\epsilon} & \leq  \sum_{\omega_n} \frac{|f(\omega_n \zeta)p(x,\omega_n)-f(\omega_n \zeta')p(x',\omega_n)|}{d(\zeta,\zeta')^\epsilon} \\
+&\leq  [f]_\epsilon \sum_{\omega_n} (\frac{d(\omega_n \zeta, \omega_n \zeta')}{d(\zeta,\zeta')})^\epsilon p(x,\omega_n) + \| f \| \sum_{\omega_n} \frac{|p(x,\omega_n)-p(x',\omega_n)|}{d(\zeta,\zeta')^\epsilon}
+\end{flalign*}
+
+ We should know with the two terms. For the second one we have
+\begin{flalign*}
+\frac{|p(x,\omega_n)-p(x',\omega_n)}{d(\zeta,\zeta' )^\epsilon} & \leq  \frac{|p(x,\omega_n)-p(x',\omega_n)|}{\delta(x,x ')^\epsilon} \\
+ & \leq  C \frac{| \phi(x,\omega_n)-\phi(x',\omega_n)|}{\delta(x,x')^\epsilon}+ \frac{\phi(x,\omega_n)}{\delta(x,x')^\epsilon}|\frac{h(\omega_n x)}{h(x)}-\frac{h \omega_n x'}{h(x')}| \\
+ & \leq   C \frac{| \phi(x,\omega_n)-\phi(x',\omega_n)|}{\delta(x,x')^\epsilon} + \frac{1}{c}\phi(x,\omega_n) \delta(x,x')^{1-\epsilon}[h](1+\rho^n)
+\end{flalign*}
+
+ With $[h]$ the Lipschitz coefficient of $h$, $c$ a non negative under bound of $h$, $C$ a upper bound of $\frac{h(x)}{h(y)}$,
+ \color{green}And $\rho$ is a contraction constant over all function $a$ \color{black}.\newline
+ $\phi(.,\omega_n)$ are differential over $X$ and we have \[
+[\phi(.,\omega_n)]=\underset{x \ne x'}{sup} \frac{|\phi(x,\omega_n)-\phi(x',\omega_n)|}{\delta(x,x')} \leq \frac{c'}{(q^1_{i_1}...q^n_{i_n})^4}
+ \]
+ With $q^j_{i_j}= \underset{i_j=1,2,3}{max}(q^j_{i_j})$. Therefor
+ \begin{flalign*}
+\sum_{\omega_n} \frac{| \phi(x,\omega_n)-\phi(x',\omega_n)|}{d(\zeta,\zeta')^\epsilon}& \leq  \underset{x \ne x'}{sup} \  \partial(x,x')^{1-\epsilon} \sum_{\omega_n} \frac{c'}{(q^1_{i_1}...q^n_{i_n})^4} \\
+& \leq  C_\epsilon (\sum_{a \geq 1} \frac{a+1}{a^4})^n
+\end{flalign*}
+
+ This last sum in converging.As the sum $\sum_{\omega_n} \phi(x,\omega_n)$ is also converging we have shown the existence of $\beta \geq 0$ and this for every $\epsilon$ and $n$.\newline
+ We can now analyse the first term.\begin{flalign*}
+(\frac{d(\omega_n \zeta,\omega_n \zeta')}{d(\zeta,\zeta')})^\epsilon & =  (\frac{\partial(\omega_n x ,\omega_n x')+\delta((\omega_n')_x u,(\omega_n')_x' u'}{\partial(x,x')+\delta(u,u')})^\epsilon\\
+& \leq \frac{\partial(\omega_n x ,\omega_n x')}{\partial(x,x')}^\epsilon+ \frac{\delta((\omega_n')_x u,(\omega_n')_x' u')}{\delta(u,u')}^\epsilon \\
+& \leq  \rho^{n \epsilon}+ \frac{\delta((\omega_n')_x u,(\omega_n')_x' u')}{\delta(u,u')}^\epsilon \\
+\end{flalign*}
+So now we have to show that we can choose $\epsilon$ in $]0;1[$ and $n$ in $\mathbb{N}*$ such that \[
+\rho^{n \epsilon} + \underset{(\zeta,\zeta')\in M}{sup} \sum_{\omega_n}
+\frac{\delta((\omega_n')_x u,(\omega_n')_x' u')}{\delta(u,u')}^\epsilon p(x,\omega_n) < 1
+\]
+We will use the Lyapounov exponant associated with $T$. We call $M$ the set of all couple of flag $(\zeta,\zeta')=((x,u),(x',u'))$ which have their origin in the same simplex and have $u \ne u'$.\newline
+If we call $\mathcal{P}_2$the set of projective map from $\mathbb{R}^2$ in $\mathbb{R}$. We define the map $\theta$ from $\mathcal{P} \times M$ in$\mathbb{R}_+$ by \[
+\theta(a,(\zeta,\zeta'))=\frac{\delta(a'_x u , a'_{x'} u')}{\delta(u,u')}
+\]
+Then $\theta$ is a multiplicative cocycle. Indeed we have $(ab)'_x = a'_{bx}b'_x$ so \[
+\theta(ab,(\zeta,\zeta'))=\theta(a,(b \zeta,b \zeta')) \theta(a,(\zeta,\zeta'))
+\]
+Now we compactified $M$ in $\bar{M}$ by adding $M'={(x,u)}$. $M$ is an dense open of $\bar{M}$ and we can extend $\theta$ to it.\[
+\theta(a,(x,v))=\theta(a,\zeta=\frac{|det(a'x)|}{\| a'_x u \|^2}
+\]
+with $\|u\|=1$. Then for every $n$ there is $\zeta_n$ such that \[
+\underset{(\zeta,\zeta')\in M}{sup} \sum_{\omega_n} \theta(\omega_n,(\zeta,\zeta'))^\epsilon p(x,\omega_n)= \sum_{\omega_n} \theta(\omega_n,\zeta_n)^\epsilon p(x_n,\omega_n)
+\]
+For every real $x$, we have $e^x \leq 1+ x + \frac{1}{2}x^2 e^{|x|}$ so for every $n$ we have: \begin{flalign*}
+u_{n,\epsilon} & =  \sum_{\omega_n} \theta(\omega_n,\zeta_n)^\epsilon p(x_n,\omega_n) \\
+& \leq  1+ \epsilon \sum_{\omega_n} log\theta(\omega_n,\zeta_n)p(x_n,\omega_n)+\frac{\epsilon^2}{2}
+\sum_{\omega_n} (log \theta (\omega_n,\zeta))^2 e^{\epsilon |log \theta (\omega_n,\zeta)|}p(x,\omega)
+\end{flalign*}
+ \begin{lem}
+ The sum \[
+ \sum_{\omega_n} (log \theta (\omega_n,\zeta))^2 e^{\epsilon |log \theta (\omega_n,\zeta)|}p(x,\omega)
+ \]
+ converges uniformly on $\bar{M}$
+ \end{lem}
+
+\begin{proof}
+We have \[
+\theta(\omega_n,\zeta) = \frac{|det((\omega_n')_x)|}{\| (\omega_n')_x^{-1} \|}
+\]
+As $\omega_n$ is inversible we have \[
+\| (\omega_n)'_x u \| \geq \frac{\| u \|}{\|(\omega_n')_x^{-1} \|}
+\]
+The we get \[
+\theta(\omega_n,(\zeta,\zeta')) \leq \underset{x}{sup} |det (\omega_n')_x| \| (\omega_n')_x^{-1} \|^2
+\]
+And we got
+\[
+|det (\omega_n)'_x| = \frac{1}{(q_n+q_{n-1} x^1 +q_{n-2} x^2)^3} \leq \frac{1}{q_{i_n}}
+\]
+With $q_{i_n}=max(q_1,q_2,q_3)$.
+Moreover we have \[
+\| |det (\omega_n)'_x| \| \leq 2 \| \Lambda^2 S_n \| \|S_n \| \leq 2K \| S_n \|^2
+\]%NB pas clair il faudrait revoir ça
+(As $\lambda_2 \leq 0$ we can make the last inegualitie).\newline
+To sum up we have $\theta(\omega_n,\zeta) \leq C q_{i_n}$ then
+\begin{flalign*}
+ \sum_{\omega_n} (log \theta (\omega_n,\zeta))^2 e^{\epsilon |log \theta (\omega_n,\zeta)|}p(x,\omega) & \leq  C_\epsilon \sum_{\omega_n} (log(C q_n))^2 q_n^\epsilon p(x,\omega_n) \\
+ & \leq  C_\epsilon \sum_{q_n} \frac{\log(C q_n)^2}{q_n^{3-\epsilon}}
+\end{flalign*}
+
+This last sum converge if $\epsilon < 1$.
+\end{proof}
+
+
+\begin{lem}
+For $\zeta=(x,u)$ in $\Delta$ we can define $f$ with \[
+f(\zeta)=\sum_a log \theta(a,\zeta)p(x,a)
+\]
+Then we get \[
+\sum_{\omega_n} log \theta(\omega_n,\zeta_n)p(x_n,\omega_n)=\sum_{k=0}^{n-1} \tilde{P}^k f(\zeta_n)
+\]
+\end{lem}
+\begin{proof}
+We write $\omega_n =a_1 a_2 ... a_n$. AS $\theta$ is a cocycle we have \[
+log \theta(\omega_n , \zeta_n)=\sum_{k=1}^n log \theta(a_k,a_{k+1}...a_n \zeta_n)
+\]
+And we have for all $k$:\[
+p(x_n,\omega_n)=p(a_2...a_n x_n,a_1)...p(a_{k+1}...a_n x_n,a_k)...p(x_n , (a_{k+1} ... a_n))
+\]
+So we get: \[
+\sum_{\omega_n}  log \theta(\omega_n,\zeta_n)p(x_n,\omega_n)
+= \sum_{k=1}^n
+ \sum_{\omega'_{n-k}}(\sum_{a_k}
+ log \theta(a_k,\omega'_{n-k} \zeta_n)
+ p(\omega'_{n-k}, a_k)) p(x_n,\omega'_{n-k})
+\]
+With $\omega'_{n-k}=(a_{k+1}...a_n)$ and as \[
+\sum_{a_1}...\sum_{a_{k-1}}p(a_2... a_n x_n ,a_1)...p(a_k...a_n x_n , a_{k-1}) =1
+\]
+So \[
+\sum_{\omega_n}  log \theta(\omega_n,\zeta_n)p(x_n,\omega_n) = \sum_{k=1}^n \sum_{\omega'_{n-k}} f(\omega'_{n-k} \zeta_n) p(x_n, \omega'_{n-k})=\sum_{k=0}^{n-1} \tilde{P}^k f(\zeta_n)
+\]
+\end{proof}
+\begin{lem}
+There is a real $\gamma$, $- \lambda_1 \leq \gamma < 0$ such for $n$ large enough we have \[
+\sum_{\omega_n}  log \theta(\omega_n,\zeta_n)p(x_n,\omega_n) \leq n \gamma < 0
+\]
+\end{lem}
+
+\begin{proof}%TODO voir si on met le lemme 4.1
+$f$ is continuous in $\tilde{\Delta}$ so we have that $\frac{1}{n} \sum_{k=0}^{n-1} \tilde{P}^k f(\zeta)$ converge uniformly to $\tilde{\pi}(f)$ Moreover \[
+\tilde{\pi}(f)=\int_X f(\zeta_x)d \pi(x) = \int_X \sum_a log \theta (a,\zeta_x)p(x,a) d \pi(x)
+\]
+If we note $g$ the function $g(\zeta)=log \theta(a^x,\tilde{T}\zeta)$ if $\zeta=(x,u)$ we have $\tilde{P}g(\zeta)=f(\zeta)$ and \[
+\tilde{\pi}(f)=\int_X \tilde{P}g(\zeta_x) d \pi(x) = \int_X g(\zeta_x) d \pi(x)= \lambda_3 - \lambda_2 = - \lambda_1 < 0
+\]
+because we have $\lambda_2=0$ and $\lambda_1 > 0$. %NB ou simplicite de spectre
+ We can conclude that there is a real $\gamma$, $- \lambda_1 < \gamma < 0$ such that eventually we have \[
+ \sum_{k=0}^{n-1}\tilde{P}^k f(\zeta_n) \leq n \gamma <0
+ \]
+\end{proof}
+We can now end the demonstration of theorem 7.1. We choose $n$ big enough for the inequality of the previous lemma to be true and we choose $\epsilon$ in $]0;1[$ small enough for \begin{flalign*}
+1) & -1 \leq n \gamma \epsilon < 0 \\
+2) & \rho^{n \epsilon}+ \frac{1}{2} \epsilon^2 \sum_{\omega_n} [log \theta(\omega_n,(\zeta,\zeta'))]^2 e^{\epsilon |log \theta(\omega_n,(\zeta,\zeta'))|}p(x,\omega_n) << n \gamma \epsilon
+\end{flalign*}
+We can conclude \[
+\rho^{n\epsilon} + sup \sum_{\omega_n}
+\frac{\delta((\omega_n')_x u,(\omega_n')_x' u')}{\delta(u,u')}^\epsilon p(x,\omega_n) \leq \alpha < 1
+\]
+ \end{proof}
+
+\subsubsection{Proof of the cohomologic equation}
+Now we can show the theorem 4.2
+\begin{proof}
+As for every $f$ in $H_\epsilon(\Delta)$ we have: \[
+[\tilde{P}^n f]_\epsilon \leq \alpha [f]_\epsilon +\beta \| f \|
+\]
+The theorem of Ionescu-Tulcea and Marinescu \cite{ITM} give the spectral decomposition of the operator $\tilde{P^n}$ in $H_\epsilon(\Delta)$: there is a finites number of eighenvalue of module $1$ who have finite multiplicity and the other part of the spectra is of module strictly less than $1$. We can also write: \[
+\tilde{P^n}f=\sum_{i=1}^p \lambda_i \tilde{P_i}f + \tilde{R}f
+\]
+where $\lambda_i$ are the eighenvalue with module $1$, $\tilde{P_i}$ are the projection on the eighen spaces who have finite dimension and $\tilde{R}$ is a linear operator of $H_\epsilon(\Delta)$ with spectral radius $r<1$ (according to the ITM theorem).\newline
+As the dynamical system $(\Delta,B_\Delta,\tilde{T,\tilde{\pi}})$ is mixing and $\tilde{P}$ is the adjoint of $\tilde{T}$ according to $\tilde{\pi}$ we can conclude that $1$ is the unique eigen value of module $1$ of $\tilde{P}$ and it is simple. So for every function $f$ in $H_\epsilon(\Delta)$, we can write:\[
+\tilde{P^n}f=\tilde{\pi}(f)+\tilde{R}f
+\]
+with $\| \tilde{R^m}f\| \leq r^m \|f\|$\newline
+So if we got two solution $g$ and $h$ of $\tilde{P}f=\tilde{P}g-g$ with $\tilde{\pi}(g)=\tilde{\pi}(h)=0$ we have: \[
+\tilde{P}(g-h)=(g-h)
+\]
+So $g-h$ is constant and therefor equal to 0.\newline
+Let $f$ be a function such that $\tilde{P}f$ is in $H_\epsilon(\Delta)$ and is integral is zero, we can find asolution of the equation:\[
+\tilde{P}f=\tilde{P}g-g
+\]
+Indeed the solution should be $g=-\sum_{k=1}^{\infty} \tilde{P^k}f$, we have to prove that $g\in H_\epsilon(\Delta)$.\newline
+As $\tilde{\pi}(f)=0$ we have $\tilde{P}^{nm} f=\tilde{R}^m f$ so\[
+\|\tilde{P}^{nm} f\| \leq r^m \|f \|
+\]
+Let $k$ and $j$ be natural numbers we have
+ \begin{flalign*}
+\ [\tilde{P}^{jn+k}f]_\epsilon & \leq  \alpha [\tilde{P}^{(j-1)n+k}f]_\epsilon + \beta \| \tilde{P}^{(j-1)n+k}f \| \\
+& \leq  \alpha (\alpha [\tilde{P}^{(j-2)n+k}f]_\epsilon + \beta \| \tilde{P}^{(j-2)n+k}f \|) + \beta r^{j-1}\| \tilde{P}^k f \| \\
+& \leq  \alpha^j [\tilde{P}^k f]_\epsilon + \alpha^{j-1} \beta  \| \tilde{P}^k f \| + ... + \beta r^{j-1} \| \tilde{P}^k f \| \\
+& =  \alpha^j [\tilde{P}^k f]_\epsilon + \beta \| \tilde{P}^k f \| \sum_{i=0}^{j-1} \alpha^{j-1-i}r^i
+\end{flalign*}
+So if we could choose $r < \alpha$ we have \[
+[\tilde{P}^{jn+k}f]_\epsilon \leq \alpha^j ([\tilde{P}^k f]_\epsilon+\| \tilde{P}^k f \| \frac{\beta}{\alpha - r})
+\]
+Then for every $N$ \begin{flalign*}
+\ [ \sum_{k=1}^N \tilde{P}^k f ]_\epsilon & \leq  \sum_{k=1}^N [\tilde{P}^k f]_\epsilon \\
+& \leq  \sum_{k=1}^{n(1+\lfloor \frac{N}{n} \rfloor)} [\tilde{P}^k f]_\epsilon \\
+& \leq  \sum_{k=0}^{n-1} \sum_{j=1}^{1+\lfloor \frac{N}{n} \rfloor} [\tilde{P}^{jn+k} f]_\epsilon\\
+& \leq  \sum_{k=0}^{n-1} \sum_{j=1}^{1+\lfloor\frac{N}{n} \rfloor} \alpha^j ([\tilde{P}^k f]_\epsilon+\| \tilde{P}^k f \| \frac{\beta}{\alpha - r}) \\
+& \leq  \frac{1}{\alpha} \sum_{k=0}^{n-1} [\tilde{P}^k f]_\epsilon+\| \tilde{P}^k f \| \frac{\beta}{\alpha - r}
+\end{flalign*}
+Which is independant of $N$. So $g$ is in $H_\epsilon(\Delta)$.
+\end{proof}
+
+\subsection{End of demonstration}
+
+\begin{dfnt}
+Let $\alpha (g,\zeta)=\frac{\| g'_x u\|^3}{|det g'_x|}$, it is a cocycle, $\alpha(g g', \zeta)=\alpha(g,g' \zeta) \alpha(g',\zeta)$.
+\end{dfnt}
+
+\begin{thm} For $\tilde{\pi}$ almost every $\zeta=(x,u)$ if $\omega_n=a_1 ... a_n$ are the first term of the decomposition we have \[
+\underset{n}{lim} \frac{1}{3n} log \alpha(\omega_n,\tilde{T}^n \zeta_x)=\lambda_2=0
+\]
+\end{thm}
+
+\begin{proof}
+We have $\omega_n x = S_n x$ and $|det (\omega_n)'_x |=\frac{1}{(q_n+q_{n-1}x^1+q_{n-2}x^2)^3}$. As $\tilde{\pi}$ is concentred on the couples $(x,\zeta_x)$ with $\zeta_x=(e^1_x,e^1_x \land e^2_x)$ we have \[
+\alpha(\omega_n,\tilde{T^n}\zeta_x)=\frac{\| (\omega_n)'_x  e^1_x \land e^2_x\|}{| det (\omega_n)'_x |}
+\]
+We can conclude with theorem 3.1 .
+\end{proof}
+
+\begin{dfnt}
+Let $f(\zeta)=\frac{1}{3} log \alpha (a^x, \tilde{T} \zeta)$
+\end{dfnt}
+
+\begin{thm}
+$\tilde{\pi}(f)=0=\lambda_2$
+\end{thm}
+
+\begin{proof}
+By the ergodique theorem we have \[
+\frac{1}{n} \sum_{k=0}^n f \circ T^k (\zeta) \to \tilde{\pi}(f)
+\]
+And we also have
+\begin{flalign*}
+\frac{1}{n} \sum_{k=0}^n f \circ T^k (\zeta) & =  \frac{1}{3n} \sum_{k=0}^{n-1} log \frac{ \| (a_{T^k x})' \tilde{T^{k+1}} \zeta \| }{| det a_x'|}\\
+ &= \frac{1}{3n} log \prod_{k=0}^{n-1} \frac{ \| (a_{T^k x})' \tilde{T^{k+1}} \zeta \| }{| det a_x'|} \\
+ &=  \frac{1}{3n} log \alpha(\omega_n,\tilde{T}^n \zeta_x)
+\end{flalign*}
+
+\end{proof}
+
+To conclude we should have the following hypothetises
+\begin{itemize}
+\item $f$ is continuous and $f \in L^2_{\tilde{\pi}}(\Delta)$
+\item $\tilde{P}f \in H_\epsilon (\Delta)$
+\item There is a fixed point of the dynamic $\zeta_0$
+\end{itemize}
+Then according to the theorem $4.2$ there exists $g$ in $H_\epsilon(\Delta)$ such as $f=g-g \circ T$ almost everywhere. With the continuity of $f$ and $g$ this equality become true everywhere.\newline
+So we have $f(\zeta_0)=0$. We just need to verify that is it not true.
+
+\subsection{The triangle sequences algorithm}
+\subsubsection{Definition}
+Let's recall what is the triangle sequence algorithm. It is defined by: \[
+T(x,y)=(\frac{x}{y},\frac{1-x-N y}{x})
+\] With $N=[\frac{1-x}{y}]$\newline
+So we have \[
+a(x,y)=(\frac{1}{1+Nx+y},\frac{x}{1+Nx+y})
+\]
+and \[
+a'=\frac{1}{1+a x +y} \left(\begin{array}{cc}
+-a & -1\\
+1+y & -x
+\end{array}\right)
+\]
+\[T'=\frac{1}{x^2} \left(\begin{array}{cc}
+-y & x\\
+a y-1 & -a x
+\end{array}\right)
+\]
+\[
+a'_{T_x}=\left(\begin{array}{cc}-a x & -x\\
+x-ay & -y \end{array} \right)
+\]
+\begin{flalign*}
+& \tilde{T}(x,y,u_1,u_2)=(\frac{y}{x},\frac{1-x-a y}{x},x u_2 -y u_1, a(y u_1-x u_2)-u_1) \\
+& \tilde{a}.(x,y,u_1,u_2) \mapsto (\frac{1}{1+a x+y},\frac{x}{1+a x+y},-x(au_1+u_2),u_1x_1-y(au_1+u_2))
+\end{flalign*}
+\subsubsection{$\lambda_2$ is negatif or zero}
+%TODO lambda_2 <= 0
+We have the following relation \begin{flalign*}
+& \beta_{n+1} = - N(n+1) \beta_n - \beta_{n-1} + \beta_{n-2} \\
+& e_{n+1}=e_n+f_n \\
+& f_{n+1}=N(n+1) e_n + e_{n-1}
+\end{flalign*}
+
+We will show that $| \beta_n | \leq e_n +f_n = e_{n+1}$ and as we have $e_n+f_n \leq 2 \max(e_n,f_n)$ it will conclude our proof. \newline
+We do it by step and we should make two cases.\newline
+\paragraph{$N(n+1)=0$}
+Then $\beta_{n+1}=-\beta_{n-1}+\beta_{n-2}$ and we got \begin{flalign*}
+ | \beta_{n+1}| &\leq e_n + e_{n-1} \\
+& = e_n + f_{n+1} \\
+& \leq e_n + f_n + f_{n+1} \\
+& = e_{n+1} + f_{n+1}
+\end{flalign*}
+
+\paragraph{$N(n+1) \geq 1$}
+Then $\beta_{n+1}=-N(n+1)\beta_n-\beta_{n-1}+\beta_{n-2}$ and we got
+\begin{flalign*}
+ | \beta_{n+1}| &\leq N(n+1)(e_n+f_n) + e_{n-1}+f_{n-1}+e_{n-1} \\
+& = f_{n+1} +N(n+1) f_n + f_{n-1}+e_{n-1}\\
+& = f_{n+1} + N(n+1) f_n+ e_{n} \\%NB erreur ici
+\end{flalign*}
+If $N(n) \geq 1$ \[
+N(n+1)f_n+e_n=N(n+1)(N(n)e_{n-1}+e_{n-2})+e_{n-1}+f_{n-1}=
+\]
+
+\subsubsection{Equation of the fixed point}
+ We should now find the coordinates of a point fixed by $\tilde{T}$. By solving $T(x,y)=(x,y)$ we get
+\begin{flalign*}
+& y=x^2\\
+& x^3+a x^2+x-1=0
+\end{flalign*}
+If $(x,y)$ is the solution of the previous equation, we get automatically that
+\begin{flalign*}
+& [\frac{1-x}{x^2}]=a\\
+& y<x
+\end{flalign*}
+which is necessary to the condition to be coherent. Then if $\zeta=(x,y,u_1,u_2)$, solving $\tilde{T}(\zeta)=\zeta$ give us \[
+\frac{u_2}{u_1}=-\frac{u_1}{au_1+u_2}+\frac{y}{x}
+\]
+By renaming $u_1=cos(\theta)$ and $u_2=sin(\theta)$ we get \[
+tan(\theta)=\frac{-1}{a+tan(\theta)}+x
+\] and then
+\[
+tan(\theta) = \frac{x-a \pm \sqrt{(a+x-2)(a+x+2)}}{2}
+\]
+
+\subsubsection{Computation of $f$}
+
+With the previous formula we have $|det a'_{Tx}|=x^2$ and
+ \[ \| a'_x \tilde{T}u\|=\sqrt{(x u_2 - y u_1)^2 + (a(yu_1-x u_2)-u_1)^2}=\sqrt{u_1^2((x tan(\theta)-y)^2+(a(y-x tan(\theta)-1))^2)}\]
+ and as $u_1^2=\frac{1}{1+tan(\theta)^2}$ we got \[
+f(\zeta)=-\frac{2}{3} log(x)+\frac{1}{2}
+log(\frac{(x tan(\theta)-y)^2+(a(y-x tan(\theta)-1))^2}{1+tan(\theta)^2})
+\]
+\begin{thm}
+The fonction $f$ is continuous
+\end{thm}
+
+\begin{thm}
+$f \in L^1l_\pi(\Delta)$
+\end{thm}
+
+\begin{thm}
+$\tilde{P}f \in H_\epsilon(\Delta)$
+\end{thm}
+
+\begin{proof}
+If $\zeta=(x,u)$ we got \[
+\tilde{P}f=\sum_a f(a \zeta) p(x,a) = \frac{1}{3} \sum_a log(\alpha(a,\zeta))p(x,a)
+\]
+Every function $a$ is holderien. So we should show that this sum converge uniformly.
+\end{proof}

@@ -1,0 +1,24 @@
+Let $\Delta=\{ 1 \geq x_1 \geq x_2 \geq 0 \}$ and $T:\Delta \to \Delta$ with \[ T(x_1,x_2)=(\frac{p_0+p_1 x_1+p_2 x_2}{q_0+q_1 x_1 +q_2 x_2},\frac{r_0+r_1 x_1+r_2 x_2}{q_0+q_1 x_1 +q_2 x_2}) \] with $(p_i(x),r_i(x),q_i(x))_{i=1,2,3}\in \mathbb{N}^9$ be piecewide constant, on some simplex, functions.Each simplex where the cooefficient are constant will be call $\Delta_\sigma$ with $\sigma \in \Sigma$ the set of all simplex. So we have
+\[
+\Delta = \cup_{\sigma \in \Sigma} \Delta_\sigma
+\]
+For almost every $x \in \Delta$ we can associate $\sigma(x)$ the simplexe in which it is (the point on the intersection of two simplex could create problem, but they have a zero measure).
+\newline It is natural to associate to $T$ the matrix $M(x)=M(\sigma(x))=\begin{pmatrix} q_0 & q_1 & q_2 \\ p_0 & p_1 & p_2 \\ r_0 & r_1 & r_2 \end{pmatrix}$. Moreover we ask that $det(M)=1$ and we will note $M^{-1}=\begin{pmatrix} a_0 & a_1 & a_2 \\ b_0 & b_1 & b_2 \\ c_0 & c_1 & c_2 \end{pmatrix}$%TODO notation de merde pour les coeff
+\newline
+So if $\tau: \Delta \to \mathbb{R}^3, (x_1,x_2) \mapsto (1,x_1,x_2)$ and $\overset{-}{.}: \mathbb{R^+}^3 \to \Delta,(x_0,x_1,x_2) \mapsto (\frac{x_1}{x_0},\frac{x_2}{x_0})$
+Then $T=\overset{-}{.} \circ M \circ \tau$.\newline
+Let $a(\sigma)$ be the locally inverse of $T$, $a:T(\Delta_\sigma) \to \Delta_\sigma$. We can compute that $a(x_1,x_2)=(\frac{b_0+b_1 x_1 + b_2 x_2}{a_0 + a_1 x_1 + a_2 x_2},\frac{c_0 + c_1 x_1 + c_2 x_2}{a_0 + a_1 x_1 + a_2 x_2})$. Then we call for a $x \in \Delta$, $\omega_n(x)=a_n a_{n-1} ... a_0$ with $a_i=a(\sigma(T^i x))$\newline
+We have yet $x=\omega_n T^n(x)$.
+\newline
+\color{green}
+We suppose that this dynamic is mixing and admit an invariant mesure $\pi$ which is regular according to the Lesbegue mesure in the following sence: there is a function $h$, analytic on the $\Delta_\sigma$ such that $h \pi= Leb$
+\color{black}
+
+\subsection{Markovian operator}
+We now define the adjoint operator $P$ of $T$ on $L^1_{\pi}(\Delta)$ by \[
+Pf(x)=\sum_{a(\sigma)} f(a x)\frac{h(a.x)}{h(x)}(Jac(T)_x)^{-1} \mathbf{1} _{T(\Delta_\sigma)}(x)
+\]
+With $Jac(T)_x$ the jacobian of $T$\newline
+To shorten the notation we will write $p(x,a)=\frac{h(a.x)}{h(x)}(Jac(T(x)))^{-1} \mathbf{1}_{T(\Delta_\sigma)}(x)$\newline
+We should also define $\phi(x,a)=(Jac(T(x)))^{-1} \mathbf{1}_{T(\Delta_\sigma)}(x)$ that we will use after. \newline
+We have $P1=1$.

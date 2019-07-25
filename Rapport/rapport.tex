@@ -16,6 +16,7 @@
 \usepackage{graphicx}
 \usepackage{natbib}
 \usepackage{pifont}
+\usepackage{tabto}
 
 \theoremstyle{plain}% default
 \newtheorem{thm}{Théorème}[section]
@@ -45,23 +46,44 @@
 \newcommand{\ncref}[1]{\cref{#1} "\nameref{#1}"}
 \newcommand{\Ncref}[1]{\Cref{#1} \Nameref{#1}}
 
-%\title{Rapport de stage}
-%\subtitle{Probespoke}
-%\author{Etienne Bonnafoux}
-%\date{De juin à août 2018}
-
 \begin{document}
-%\maketitle
+
+\title{Rapport de stage}
+%\subtitle{Probespoke}
+\author{Etienne Bonnafoux}
+\date{De juin a aout 2018}
+
+\maketitle
+\newpage
+
 \tableofcontents
+\newpage
 
 \section{Introduction}
+\input{introduction.tex}
+\newpage
+
 \section{Motivation}
 \input{motivation.tex}
+\newpage
+
 \section{Definition}
+\input{definition.tex}
+\newpage
+
 \section{Extension naturelle et mesure invariante}
+\input{extension.tex}
+\newpage
+
 \section{Convergence simple de l'algorithme}
+\input{cs.tex}
+\newpage
+
 \section{Convergence forte de l'algorithme}
+\input{cf.tex}
+\newpage
 
 \bibliographystyle{plain}
 \bibliography{biblio.bib}
+
 \end{document}

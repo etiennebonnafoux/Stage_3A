@@ -1,2 +1,23 @@
 \subsection{Cas de la dimension 1}
+
+Soit $x \in ]0;1[$ et $e_1$ $e_2$ une base de $\mathbb{R}^2$
+On note $D$ la demi-droite passant par $(0;0)$ et $X=(x;1)$
+Comment trouver un cône plus petit contenant $D$?
+
+On note $X=xe_1+e_2=x(e_1+\frac{1}{x}e_2)=x(e_1+[\frac{1}{x}]e_2+{\frac{1}{x}}e_2)$
+On pose donc $e_3=e_1+[\frac{1}{x}]e_2$ et nous avons $X=x(Txe_2+e_3)$ avec $Tx={\frac{1}{x}}$
+
+Nous avons donc une suite de base $(e_n;e_{n+1})$ avec pour matrice de changement de base $P_n=
+\begin{pmatrix}
+   0 & 1 \\
+   2 & [\frac{1}{T^{n-1}x}]
+\end{pmatrix}$
+En écrivant $e_{n+2}=(p_n;q_n)\in \mathbb{Z}^2$ nous avons:
+$P_1...P_n=
+\begin{pmatrix}
+  p_{n-1} & p_n \\
+  q_{n-1} & q_n
+\end{pmatrix}$
+
+Finalement nous avons $x=\frac{p_{n-1}T^n {x}+p_n}{q_{n-1}T^n x+q_{n-1}}$
 \subsection{Flow sur une variété}

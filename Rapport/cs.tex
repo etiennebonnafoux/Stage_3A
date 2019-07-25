@@ -1,0 +1,80 @@
+In this section the norm we use is $\|(x_1,x_2,x_3)\| \mapsto \sum |x_i|$\newline
+As $T$ is from $\Delta$ to $\Delta$ we can work with the basis $\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix},\begin{pmatrix} 1 \\ 1 \\ 0 \end{pmatrix}, \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}$. In this basis we have: \[
+Z_1^n \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}=
+\begin{pmatrix} N(n) & N(n)+1 & N(n)+1 \\ 1 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}
+\]
+\[
+Z_2^n \begin{pmatrix} 1 & 1 & 1 \\ 0 & 1 & 1 \\ 0 & 0 & 1 \end{pmatrix}=
+\begin{pmatrix} N(n) & N(n) & N(n)+1 \\ 1 & 1 & 1 \\ 0 & 1 & 1 \end{pmatrix}
+\]
+
+So let $A_1^k,A_2^k,A_3^k$ be the non-normalised vector which are the vertice of a triangle where $(1,x_1^0,x_2^0)$ is. We have the recurrence relation:
+
+\[j_k=1
+\begin{array}{c c l}
+A_1^{k+1} & = & N A_1^k+A_2^k\\
+A_2^{k+1} & = & A_1^{k+1} + A_1^k \\
+A_3^{k+1} & = & A_2^{k+1} + A_3^k
+\end{array}
+\]
+
+\[j_k=2
+\begin{array}{c c l}
+A_1^{k+1} & = & N A_1^k+A_2^k\\
+A_2^{k+1} & = & A_1^{k+1} + A_3^k \\
+A_3^{k+1} & = & A_2^{k+1} + A_1^k
+\end{array}
+\]
+And we know the order of the norm of this vectors.
+\begin{lem}
+\[
+\|A_3^k \| \geq \|A_2^k\| \geq \|A_1^k \|
+\]
+and if $j_k=2$
+\[
+\frac{\|A_2^{k+1}\|}{\|A_3^{k+1}\|} \geq \frac{1}{2}
+\]
+\end{lem}
+\begin{rmq}
+As this vector have positive coordonate, the norm of the sum of two vectors is the sum of theirs norms.
+\end{rmq}
+We call $D(U,V)=\|\frac{U}{\|U \|}- \frac{V}{\|V\|}\|$ and $d_k=\max(D(A_1^k,A_2^k),D(A_2^k,A_3^k),D(A_1^k),A_3^k)$. $d_k$ is the biggest length of the size of the triangle. It is a decreasing sequence bound by $0$. We should prove that it's limit is indeed $0$.\newline
+We will use this useful lemma,
+\begin{lem}
+ $D(U,V+b U)=\frac{\|V\|}{\|V+b U\|}D(U,V)$
+\end{lem}
+\begin{lem}
+If $j_k=2$ and $j_{k-1}=2$ then $d_{k+1} \leq \frac{2}{3} d_k$
+\end{lem}
+\begin{proof}
+
+\[
+\begin{array}{c c l}
+\star \: D(A_1^{k+1},A_2^{k+1}) & = & D(A_1^{k+1},A_1^{k+1}+A_3^k) \\
+& = & \frac{\|A_3^k\|}{\|A_3^k+A_1^{k+1}\|}D(A_1^{k+1},A_3^k)\\
+& \leq & \frac{\|A_3^k\|}{\|A_3^k+N A_1^k+A_2^k\|}D(A_1^{k+1},A_3^k)\\
+& \leq & \frac{1}{1+\frac{\|A_2^k\|}{\|A_3^k\|}} d_k\\
+& \leq & \frac{2}{3} d_k
+\end{array}
+\]
+
+\[
+\begin{array}{c c l}
+\star \: D(A_1^{k+1},A_3^{k+1}) & = & D(A_1^{k+1},A_1^{k+1}+A_1^k+A_3^k)\\
+ & = & \frac{\|A_1^k+A_3^k\|}{\|A_1^{k+1}+A_1^k+A_3^k\|}  D(A_1^{k+1},A_1^k+A_3^k) \\
+\end{array}
+\]
+Yet we have \[
+\frac{\|A_1^k+A_3^k\|}{\|A_1^{k+1}+A_1^k+A_3^k\|} \leq \frac{\|A_1^k+A_3^k\|}{\|A_2^k+A_1^k+A_3^k\|} \leq
+\frac{2}{3}
+\]
+
+
+\[
+\begin{array}{c c l}
+\star \: D(A_2^{k+1},A_3^{k+1}) & = & D(A_2^{k+1},A_2^{k+1}+A_1^k) \\
+& = &\frac{\|A_1^k\|}{\|A_1^k+A_2^{k+1}\|} D(A_2^{k+1},A_2^{k+1}+A_1^k)\\
+& \leq & \frac{1}{2} d_k
+\end{array}
+\]
+\end{proof}
