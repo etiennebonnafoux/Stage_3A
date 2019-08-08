@@ -1,0 +1,16 @@
+Nous nous interressons maintenant sur une façon d'obtenir une formule explicite pour la mesure invariante de l'algorithme. Nous donnerons tout d'abord la philosophie générale avant dans donner un exemple simple. Cette méthode a été utilisée dans des cas cas plus compliqué comme dans ?? Pour l'algorithme de Cassaigne et le reverse algorithme.
+
+\subsection{Philosophie générale}
+
+Soit $F: \Lambda \to \Lambda,x \mapsto M(x)^{-1}$ avec $M$ une fonction homogène de degré 0 $M(\lambda x)=M(x)$ et constante par morceau sur des simplexes.De plus $M(x)$ est toujours inversible, de déterminant 1 et sans coefficient négatif.\newline
+On lui associe $f: \Delta \to \Delta,x \mapsto \frac{F(x)}{\| F(x) \|}$.
+\begin{hyp}
+Pour Leb-presque tout x on a $\|F(x)\| \leq \|x\|$
+\end{hyp}
+Cette transformations est très surement pas bijective, nous devons donc étendre naturellement le domaine pour lui donner cette propriétée.
+\[
+\tilde{F}: \begin{array}{c}
+\Lambda \times \mathbb{R_+^d} \to \Lambda \times \mathbb{R_+^d}\\
+\begin{pmatrix} x \\ a \end{pmatrix} \mapsto \begin{pmatrix} M(x)^{-1} & 0 \\ 0 & M(x)^t \end{pmatrix} \begin{pmatrix} x \\ a \end{pmatrix}
+\end{array}
+\]

@@ -1,15 +1,56 @@
-Let $\Delta=\{ 1 \geq x_1 \geq x_2 \geq 0 \}$ and $T:\Delta \to \Delta$ with \[ T(x_1,x_2)=(\frac{p_0+p_1 x_1+p_2 x_2}{q_0+q_1 x_1 +q_2 x_2},\frac{r_0+r_1 x_1+r_2 x_2}{q_0+q_1 x_1 +q_2 x_2}) \] with $(p_i(x),r_i(x),q_i(x))_{i=1,2,3}\in \mathbb{N}^9$ be piecewide constant, on some simplex, functions.Each simplex where the cooefficient are constant will be call $\Delta_\sigma$ with $\sigma \in \Sigma$ the set of all simplex. So we have
+Soit $\Delta=\{ 1 \geq x_1 \geq x_2 \geq 0 \}$, nous appelons algorithme de dévellopement en fraction continue en dimension3 une fonction $T:\Delta \to \Delta$ définie par \[ T(x_1,x_2)=(\frac{p_0+p_1 x_1+p_2 x_2}{q_0+q_1 x_1 +q_2 x_2},\frac{r_0+r_1 x_1+r_2 x_2}{q_0+q_1 x_1 +q_2 x_2}) \] avec $(p_i(x),r_i(x),q_i(x))_{i=1,2,3}\in \mathbb{N}^9$ des fonctions simultanémant constante sur des simplexes. Chaques simplexe où ces fonctions sont constantes seront appelés $\Delta_\sigma$ avec $\sigma \in \Sigma$ l'ensemble de ces simplexes. Nous avons donc
 \[
 \Delta = \cup_{\sigma \in \Sigma} \Delta_\sigma
 \]
-For almost every $x \in \Delta$ we can associate $\sigma(x)$ the simplexe in which it is (the point on the intersection of two simplex could create problem, but they have a zero measure).
-\newline It is natural to associate to $T$ the matrix $M(x)=M(\sigma(x))=\begin{pmatrix} q_0 & q_1 & q_2 \\ p_0 & p_1 & p_2 \\ r_0 & r_1 & r_2 \end{pmatrix}$. Moreover we ask that $det(M)=1$ and we will note $M^{-1}=\begin{pmatrix} a_0 & a_1 & a_2 \\ b_0 & b_1 & b_2 \\ c_0 & c_1 & c_2 \end{pmatrix}$%TODO notation de merde pour les coeff
+Et l'intersection de deux simplexes et soit vide soit un segment. Dans les deux cas de mesure nulle. Ainsi pour être tout à fait exact la fonctionT n'est définie que sur l'ensemble \[
+A_0= \Delta \backslash \underset{\sigma}{\cup} Fr(\Delta_{\sigma})
+\]
+et en nottant par récurrence $A_k= T(A_{k-1}) \cap A_0 $ nous définissons une dynamique (non-réversible) sur un ensemble de mesure pleine. Dans la suite nous noterons aussi cette ensemble $\Delta$ bien que ça ne soit pas exact. \newline
+
+Ainsi pour presque tout $x \in \Delta$ nous pouvons associer $\sigma(x)$ Le simplexe dans lequel il est.\newline
+
+Il est donc naturel d'associer à $T$ les matrices $N(x)=N(\sigma(x))=\begin{pmatrix} q_0 & q_1 & q_2 \\ p_0 & p_1 & p_2 \\ r_0 & r_1 & r_2 \end{pmatrix}$. De plus nous demanderons à ce que $det(N)=1$ (c'est aussi dire que $M=N^{-1} \in SL_3{\mathbb{Z}}$ ) et nous notterons $M=N^{-1}=\begin{pmatrix} a_0 & a_1 & a_2 \\ b_0 & b_1 & b_2 \\ c_0 & c_1 & c_2 \end{pmatrix}$
+%TODO notation de merde pour les coeff
 \newline
-So if $\tau: \Delta \to \mathbb{R}^3, (x_1,x_2) \mapsto (1,x_1,x_2)$ and $\overset{-}{.}: \mathbb{R^+}^3 \to \Delta,(x_0,x_1,x_2) \mapsto (\frac{x_1}{x_0},\frac{x_2}{x_0})$
-Then $T=\overset{-}{.} \circ M \circ \tau$.\newline
-Let $a(\sigma)$ be the locally inverse of $T$, $a:T(\Delta_\sigma) \to \Delta_\sigma$. We can compute that $a(x_1,x_2)=(\frac{b_0+b_1 x_1 + b_2 x_2}{a_0 + a_1 x_1 + a_2 x_2},\frac{c_0 + c_1 x_1 + c_2 x_2}{a_0 + a_1 x_1 + a_2 x_2})$. Then we call for a $x \in \Delta$, $\omega_n(x)=a_n a_{n-1} ... a_0$ with $a_i=a(\sigma(T^i x))$\newline
-We have yet $x=\omega_n T^n(x)$.
+Ainsi si $\tau: \Delta \to \mathbb{R}^3, (x_1,x_2) \mapsto (1,x_1,x_2)$ et $\overset{-}{.}: \mathbb{R^+}^3 \to \Delta,(x_0,x_1,x_2) \mapsto (\frac{x_1}{x_0},\frac{x_2}{x_0})$
+alors $T=\overset{-}{.} \circ M \circ \tau$.\newline
+Si $a(\sigma)$ est la fonction inverse de $T$ localement sur le simplexe $\Delta_{\sigma}$, $a:T(\Delta_\sigma) \to \Delta_\sigma$, nous pouvons la calculer explicitement: $a(x_1,x_2)=(\frac{b_0+b_1 x_1 + b_2 x_2}{a_0 + a_1 x_1 + a_2 x_2},\frac{c_0 + c_1 x_1 + c_2 x_2}{a_0 + a_1 x_1 + a_2 x_2})$.\newline
+
+ Puis pour $x \in \Delta$, nous noterrons $\omega_n(x)=a_n a_{n-1} ... a_0$ avec $a_i=a(\sigma(T^i x))$\newline
+ainsi nous avons $x=\omega_n T^n(x)$.
 \newline
+Nous appelerons $\omega_n$ le dévellopement limité de $x$ au rang $n$ et $T^n(x)$ le reste au rang $n$ de façon analogue au fraction continues en dimension $1$.
+
+Prenons $x=(x_1,x_2) \in \Delta$. Si nous notons $M_n(x)=M(T^n(x))$, et $x^n_1,x^n_2$ les coordonées de $T^n(x)$ nous avons
+\[ k_n
+\begin{pmatrix} 1 \\ x_1^n \\ x_2^n \end{pmatrix}=
+M_n \begin{pmatrix} 1 \\ x_1^{n+1} \\ x_2^{n+1} \end{pmatrix}
+\]
+avec $k_n=a_0+x^{n-1}_1 a_1 + x^{n-1}_2 a_2$.\newline
+
+Puis $K_n \begin{pmatrix} 1 \\x_1^0 \\ x_2^0 \end{pmatrix} = S_n \begin{pmatrix} 1 \\ x_1^n \\ x_2^n \end{pmatrix}$\newline
+$S_n=A_1 A_2 ... A_n$ et $K_n=k_1 ... k_n$.
+
+We should name the coefficent of $S_n$:$$
+S_n=\begin{pmatrix}
+a_0^n & a_1^n & a_2^n \\
+b_0^n & b_1^n & b_2^n \\
+c_0^n & c_1^n & c_2^n
+\end{pmatrix}
+$$
+So we have
+$$
+\left \{
+\begin{array}{l}
+a_0^n+x_1^n a_1^n +x_2^n a_2^n=K_n\\
+b_0^n+x_1^n b_1^n +x_2^n b_2^n=K_n x_1^0
+\end{array}
+\right .
+$$
+Then $\frac{a_0^n+x_1^n a_1^n +x_2^n a_2^n}{b_0^n+x_1^n b_1^n +x_2^n b_2^n}=x_1^0$.\newline
+We can now control the convergence $| \frac{b_0^n}{a_0^n}-x_1^0 |= | \frac{a_0^n b_0^n+x_1^n a_1^n b_1^n +x_2^n a_2^n b_2^n-a_0^n b_0^n}{a_0^n(a_0^n+x_1^n a_1^n +x_2^n a_2^n)} | \leq \frac{1}{|a_o^n|^2}(x_1^n |a_1^n b_0^n - a_0^n b_1^n |+x_2^n |a_2^n b_0^n - a_0^n b_2^n |) \leq 2 \frac{\|S_n^{-1} \|}{\| S_n \|^2}$\newline
+So we have $\frac{\log{| \frac{b_0^n}{a_0^n}-x_1^0 |}}{n} \leq \frac{log{2}}{n}+\frac{\log {\|S_n^{-1}\|}}{n}-2\frac{\log{\|S_n\|}}{n}$ and taking the limit give $limsup \frac{\log{| \frac{b_0^n}{a_0^n}-x_1^0 |}}{n} \leq -\lambda_3-2\lambda_1=\lambda_2-\lambda_1 \leq 0 $ and the last inequalities is strict if and only if $\lambda_1 > \lambda_2$
+
 \color{green}
 We suppose that this dynamic is mixing and admit an invariant mesure $\pi$ which is regular according to the Lesbegue mesure in the following sence: there is a function $h$, analytic on the $\Delta_\sigma$ such that $h \pi= Leb$
 \color{black}
